@@ -6,738 +6,607 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Projeto Ian">
-<meta name="theme-color" content="#0F0F1A">
+<meta name="theme-color" content="#0A0A18">
 <meta name="mobile-web-app-capable" content="yes">
 <title>Projeto Ian ⚡</title>
-<!-- PWA icon: inline SVG as data URI -->
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="manifest" href="manifest.json">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-<!-- Fallback if Google Fonts fails -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-@font-face{font-family:'Bungee';font-style:normal;font-weight:400;font-display:swap;
-src:local('Bungee Regular'),local('Bungee-Regular')}
-@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:400;font-display:swap;
-src:local('Nunito Sans Regular'),local('NunitoSans-Regular')}
-:root{--bg:#0F0F1A;--card:#1A1A2E;--card2:#222240;--border:#2D2D4A;--ng:#00FF87;--nb:#00D4FF;
---np:#A78BFA;--ny:#FFE600;--nr:#FF4D6A;--no:#FF8C00;--nk:#FF6BCB;--nt:#14F0C0;
---text:#E8E8F0;--text2:#9898B0;--text3:#5A5A78}
+:root{
+  --bg:#0A0A18;--surface:rgba(18,18,36,.85);--surface2:rgba(28,28,52,.9);--border:rgba(60,60,100,.3);
+  --glass:rgba(255,255,255,.03);--glass2:rgba(255,255,255,.06);
+  --neon:#00FF87;--blue:#00D4FF;--purple:#A78BFA;--gold:#FFD700;--red:#FF4D6A;
+  --orange:#FF8C00;--pink:#FF6BCB;--teal:#14F0C0;
+  --text:#F0F0FF;--text2:#A0A0C0;--text3:#5A5A78;
+  --glow-green:0 0 20px rgba(0,255,135,.15);--glow-blue:0 0 20px rgba(0,212,255,.15);
+}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{font-family:'Nunito Sans','Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;
-min-height:100dvh;overflow-x:hidden;padding-bottom:140px;
-background-image:
-  linear-gradient(rgba(0,255,135,.03) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(0,255,135,.03) 1px,transparent 1px),
-  radial-gradient(ellipse at 20% 50%,rgba(0,212,255,.06) 0%,transparent 50%),
-  radial-gradient(ellipse at 80% 20%,rgba(167,139,250,.06) 0%,transparent 50%),
-  radial-gradient(ellipse at 50% 80%,rgba(0,255,135,.04) 0%,transparent 50%);
-background-size:24px 24px,24px 24px,100% 100%,100% 100%,100% 100%}
-
-/* floating game decorations */
-body::before{content:'🎮  ⭐  💎  🏆  ⚡  🎯  🔥  ❤️  🎮  ⭐  💎  🏆  ⚡  🎯  🔥  ❤️';
-position:fixed;top:0;left:0;right:0;height:100vh;pointer-events:none;z-index:0;
-font-size:16px;opacity:.04;word-spacing:40px;line-height:80px;letter-spacing:20px;
-overflow:hidden;text-align:justify;padding:20px}
-
-/* pixel corner decorations */
-.pixel-corners{position:relative}
-.pixel-corners::before,.pixel-corners::after{content:'';position:absolute;width:8px;height:8px;
-border-radius:2px;pointer-events:none;z-index:1}
-.pixel-corners::before{top:-3px;left:-3px;background:var(--ng);box-shadow:10px 0 0 var(--nb),0 10px 0 var(--nb),20px 0 0 var(--np)}
-.pixel-corners::after{bottom:-3px;right:-3px;background:var(--ny);box-shadow:-10px 0 0 var(--no),-20px 0 0 var(--nr)}
-
-/* animated pixel blocks background */
-@keyframes floatUp{0%{transform:translateY(100vh) rotate(0deg);opacity:0}
-10%{opacity:1}90%{opacity:1}100%{transform:translateY(-20px) rotate(180deg);opacity:0}}
-.game-particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.game-particles span{position:absolute;display:block;width:6px;height:6px;border-radius:2px;
-animation:floatUp linear infinite;opacity:0}
-.game-particles span:nth-child(1){left:10%;background:var(--ng);animation-duration:18s;animation-delay:0s}
-.game-particles span:nth-child(2){left:25%;background:var(--nb);animation-duration:22s;animation-delay:3s;width:4px;height:4px}
-.game-particles span:nth-child(3){left:40%;background:var(--np);animation-duration:20s;animation-delay:6s;width:8px;height:8px}
-.game-particles span:nth-child(4){left:55%;background:var(--ny);animation-duration:24s;animation-delay:2s;width:5px;height:5px}
-.game-particles span:nth-child(5){left:70%;background:var(--nr);animation-duration:19s;animation-delay:5s}
-.game-particles span:nth-child(6){left:85%;background:var(--nt);animation-duration:21s;animation-delay:8s;width:7px;height:7px}
-.game-particles span:nth-child(7){left:15%;background:var(--no);animation-duration:25s;animation-delay:4s;width:4px;height:4px}
-.game-particles span:nth-child(8){left:60%;background:var(--ng);animation-duration:17s;animation-delay:7s;width:5px;height:5px}
-
-/* scanline effect */
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px)}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);
+  min-height:100vh;min-height:100dvh;overflow-x:hidden;
+  background-image:url('bg-game.png');background-size:300px 300px;background-repeat:repeat}
 button{font-family:inherit;cursor:pointer;border:none;outline:none}
-.gf{font-family:'Bungee',cursive}
+.gf{font-family:'Orbitron',monospace}
 ::-webkit-scrollbar{display:none}
 
-/* nav */
-.nav{position:fixed;bottom:55px;left:0;right:0;background:linear-gradient(180deg,#0D0D1F 0%,#080816 100%);
-border-top:1px solid var(--border);display:flex;z-index:99999;padding:4px 0 6px;
-box-shadow:0 -4px 20px rgba(0,0,0,.5)}
-.nav button{flex:1;background:none;color:var(--text3);display:flex;flex-direction:column;
-align-items:center;gap:2px;padding:8px 4px;font-size:9px;font-weight:700;letter-spacing:.3px;transition:.2s}
-.nav button.act{color:var(--ng);text-shadow:0 0 10px rgba(0,255,135,.4)}
-.nav .ni{font-size:20px;height:24px}
+/* ——— GLASS CARDS ——— */
+.glass{background:var(--surface);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--border);border-radius:16px}
+.glass2{background:var(--surface2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid var(--border);border-radius:14px}
 
-/* pages */
-.pg{display:none;padding:16px 16px 20px;max-width:520px;margin:0 auto}
+/* ——— NAV ——— */
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:rgba(8,8,20,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid var(--border);display:flex;
+  padding:2px 0 max(4px,env(safe-area-inset-bottom))}
+.nav button{flex:1;background:none;color:var(--text3);display:flex;flex-direction:column;
+  align-items:center;gap:2px;padding:8px 4px;font-size:9px;font-weight:700;
+  letter-spacing:.4px;transition:.2s}
+.nav button.act{color:var(--neon)}
+.nav button .ni{font-size:18px;height:22px;transition:.2s}
+.nav button.act .ni{transform:scale(1.15);filter:drop-shadow(0 0 6px rgba(0,255,135,.4))}
+
+/* ——— PAGES ——— */
+.pg{display:none;padding:16px 16px 88px;max-width:520px;margin:0 auto}
 .pg.act{display:block}
 
-/* xp header */
-.xph{background:linear-gradient(135deg,var(--card) 0%,#1E1E38 100%);border-radius:20px;padding:22px 20px;
-margin-bottom:16px;border:1px solid var(--border);position:relative;overflow:hidden}
-.xph::after{content:'';position:absolute;top:-30px;right:-30px;width:140px;height:140px;
-background:radial-gradient(circle,rgba(0,255,135,.08),transparent 70%);pointer-events:none}
-.lvl-badge{display:inline-flex;align-items:center;gap:6px;background:var(--card2);
-padding:5px 14px;border-radius:20px;margin-bottom:12px;font-size:13px;font-weight:700}
-.xp-num{font-size:32px;font-weight:800;margin-bottom:2px}
-.xp-num span{font-size:14px;font-weight:600;color:var(--text2)}
-.xp-label{font-size:11px;color:var(--text3);margin-bottom:8px}
-.xp-track{background:var(--card2);border-radius:20px;height:10px;overflow:hidden;position:relative}
-.xp-fill{height:100%;border-radius:20px;transition:width .6s cubic-bezier(.4,0,.2,1);
-background:linear-gradient(90deg,var(--ng),var(--nb))}
-.xp-track::after{content:'';position:absolute;inset:0;
-background:linear-gradient(180deg,rgba(255,255,255,.15) 0%,transparent 50%);border-radius:20px}
+/* ——— OVERLAY ——— */
+.ov{position:fixed;inset:0;background:var(--bg);z-index:200;overflow-y:auto;
+  padding:16px 16px 40px;display:none;
+  background-image:url('bg-game.png');background-size:300px 300px}
+.ov.open{display:block}
+.ov>*{max-width:520px;margin-left:auto;margin-right:auto}
 
-/* day cards */
-.dc{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:16px 18px;
-margin-bottom:10px;display:flex;align-items:center;gap:14px;transition:all .2s;position:relative;overflow:hidden}
-.dc.done{border-color:rgba(0,255,135,.25)}
-.dc.done::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ng)}
-.dc.locked{opacity:.4;pointer-events:none}
-.dc-icon{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;
-font-size:24px;flex-shrink:0;position:relative}
-.dc-info{flex:1;min-width:0}
-.dc-title{font-size:14px;font-weight:700;margin-bottom:2px}
-.dc-tag{font-size:11px;font-weight:600}
-.dc-xp{text-align:right;flex-shrink:0}
-.dc-xp .earned{font-size:16px;font-weight:800;color:var(--ng)}
-.dc-xp .label{font-size:9px;color:var(--text3);font-weight:700}
-.dc-arrow{color:var(--text3);font-size:18px;flex-shrink:0}
+/* ——— COMPONENTS ——— */
+.back{background:var(--surface);color:var(--text2);padding:8px 16px;border-radius:10px;
+  font-size:12px;font-weight:600;margin-bottom:16px;display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--border)}
 
-/* detail overlay */
-.overlay{position:fixed;inset:0;background:var(--bg);z-index:200;overflow-y:auto;
-padding:16px 16px 40px;display:none;
-background-image:
-  linear-gradient(rgba(0,255,135,.03) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(0,255,135,.03) 1px,transparent 1px);
-background-size:24px 24px}
-.overlay.open{display:block}
-.overlay>*{max-width:520px;margin-left:auto;margin-right:auto}
-.back-btn{background:var(--card);color:var(--text2);padding:8px 16px;border-radius:12px;
-font-size:13px;font-weight:600;margin-bottom:16px;display:inline-flex;align-items:center;gap:6px}
-.detail-header{border-radius:20px;padding:24px 20px;margin-bottom:16px;position:relative;overflow:hidden}
-.detail-header .emoji{font-size:40px;margin-bottom:6px}
-.detail-header .tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px}
-.detail-header h2{font-size:22px;font-weight:800}
-.section-card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:20px;margin-bottom:12px}
-.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;
-display:flex;align-items:center;gap:6px}
-.section-card p{font-size:13.5px;color:var(--text2);line-height:1.7}
-.paper-alert{background:linear-gradient(135deg,#3D2800,#2D1F00);border:1px solid #6B4D00;border-radius:14px;
-padding:14px 16px;margin-bottom:12px;display:flex;gap:10px;align-items:flex-start}
-.paper-alert .icon{font-size:22px;flex-shrink:0}
-.paper-alert p{font-size:12.5px;color:#FFD666;line-height:1.6;font-weight:600}
+.xp-track{background:rgba(255,255,255,.06);border-radius:20px;height:8px;overflow:hidden;position:relative}
+.xp-fill{height:100%;border-radius:20px;transition:width .8s cubic-bezier(.25,.8,.25,1);
+  background:linear-gradient(90deg,var(--neon),var(--blue));position:relative}
+.xp-fill::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,.25) 0%,transparent 60%);border-radius:20px}
 
-/* mom call */
-.mom-card{background:linear-gradient(135deg,#0D2818,#0A1F14);border:1px solid #1A4D2E;border-radius:16px;
-padding:20px;margin-bottom:12px}
-.mom-bubble{background:rgba(0,255,135,.08);border-radius:14px;border-bottom-left-radius:4px;
-padding:12px 16px;margin-bottom:8px}
-.mom-bubble .who{font-size:9px;font-weight:700;color:var(--ng);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
-.mom-bubble p{font-size:13px;color:var(--text);font-style:italic;line-height:1.65}
-.tip-box{background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.15);border-radius:14px;
-padding:14px 16px;margin-bottom:12px;display:flex;gap:10px}
-.tip-box .icon{font-size:16px;flex-shrink:0}
-.tip-box p{font-size:12px;color:var(--nb);line-height:1.6}
-
-/* ratings */
+/* rating */
 .rate-row{margin-bottom:14px}
-.rate-label{font-size:11px;font-weight:700;color:var(--text3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.3px}
-.rate-btns{display:flex;gap:4px}
-.rate-btns button{width:28px;height:28px;border-radius:8px;font-size:11px;font-weight:700;transition:.15s}
-.rate-btns button.off{background:var(--card2);color:var(--text3)}
-.rate-btns button.on{background:var(--ny);color:#000;transform:scale(1.08)}
+.rate-label{font-size:10px;font-weight:700;color:var(--text3);margin-bottom:8px;
+  text-transform:uppercase;letter-spacing:.4px}
+.rate-track{display:flex;gap:3px}
+.rate-track button{flex:1;height:32px;border-radius:6px;font-size:11px;font-weight:700;transition:.15s}
+.rate-track button.off{background:rgba(255,255,255,.04);color:var(--text3)}
+.rate-track button.on{color:#000}
+
+/* day card */
+.dc{padding:14px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px;
+  transition:all .15s;position:relative;overflow:hidden;cursor:pointer}
+.dc.done{border-color:rgba(0,255,135,.2)}
+.dc.done::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--neon)}
+.dc.lk{opacity:.35;pointer-events:none;cursor:not-allowed}
+.dc-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;
+  justify-content:center;font-size:22px;flex-shrink:0}
+.dc-info{flex:1;min-width:0}
+.dc-title{font-size:13px;font-weight:700;margin-bottom:1px}
+.dc-tag{font-size:10px;font-weight:600}
+.dc-xp{text-align:right;flex-shrink:0}
+
+/* mission header */
+.mh{border-radius:18px;padding:28px 22px;margin-bottom:14px;position:relative;overflow:hidden}
+.mh .tag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.mh h2{font-size:20px;font-weight:800}
+.mh .lvl{font-size:9px;font-weight:700;color:rgba(255,255,255,.5);margin-top:4px;
+  text-transform:uppercase;letter-spacing:.6px}
+
+/* paper alert */
+.pa{background:rgba(255,200,0,.08);border:1px solid rgba(255,200,0,.2);border-radius:12px;
+  padding:12px 14px;margin-bottom:12px;display:flex;gap:10px;align-items:flex-start}
+.pa p{font-size:12px;color:var(--gold);line-height:1.6;font-weight:600}
+
+/* section */
+.sec{padding:18px;margin-bottom:10px}
+.sec-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px;
+  display:flex;align-items:center;gap:6px}
+
+/* achievement */
+.ach{text-align:center;padding:16px 10px;transition:.2s}
+.ach.locked{opacity:.3}
+.ach.unlocked{border-color:rgba(0,255,135,.25);box-shadow:var(--glow-green)}
+.ach .ai{font-size:28px;margin-bottom:5px}
+.ach .an{font-size:10px;font-weight:700;margin-bottom:2px}
+.ach .ad{font-size:9px;color:var(--text3)}
+
+/* mom */
+.mom-bubble{background:rgba(0,255,135,.06);border:1px solid rgba(0,255,135,.12);
+  border-radius:12px;border-bottom-left-radius:3px;padding:12px 14px;margin-bottom:8px}
+.mom-bubble p{font-size:13px;font-style:italic;line-height:1.6}
+.mom-who{font-size:8px;font-weight:700;color:var(--neon);text-transform:uppercase;
+  letter-spacing:.5px;margin-bottom:3px}
 
 /* reflection */
-.refl-q{background:var(--card2);border-radius:12px;padding:12px 16px;margin-bottom:6px;
-font-size:13px;color:var(--text);line-height:1.6}
-.refl-q b{color:var(--ny)}
+.rq{background:rgba(255,255,255,.03);border-radius:10px;padding:10px 14px;margin-bottom:5px;
+  font-size:12.5px;line-height:1.6}
 
-/* done btn */
-.done-btn{width:100%;padding:16px;border-radius:14px;font-size:15px;font-weight:700;
-color:#000;transition:all .2s;margin-top:8px;text-transform:uppercase;letter-spacing:.5px}
-.done-btn.pending{background:linear-gradient(135deg,var(--ng),var(--nb));
-box-shadow:0 4px 20px rgba(0,255,135,.3)}
-.done-btn.pending:active{transform:scale(.97)}
-.done-btn.completed{background:var(--ng);box-shadow:0 4px 20px rgba(0,255,135,.2);animation:glow 2s infinite}
+/* btn */
+.btn-main{width:100%;padding:16px;border-radius:14px;font-size:14px;font-weight:800;
+  color:#000;text-transform:uppercase;letter-spacing:.8px;transition:.2s;
+  position:relative;overflow:hidden;font-family:'Orbitron',monospace}
+.btn-main:active{transform:scale(.97);filter:brightness(.9)}
+.btn-green{
+  background:linear-gradient(180deg,#33FFaa 0%,var(--neon) 45%,#00CC6A 100%);
+  box-shadow:0 4px 0 #009950,0 6px 20px rgba(0,255,135,.25);
+  text-shadow:0 1px 0 rgba(255,255,255,.3)}
+.btn-green:active{box-shadow:0 1px 0 #009950,0 2px 8px rgba(0,255,135,.2);transform:translateY(3px) scale(.98)}
+.btn-green::after{content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
+  transform:skewX(-20deg);animation:shimmer 3s infinite}
+@keyframes shimmer{0%{left:-60%}100%{left:120%}}
+.btn-done{
+  background:linear-gradient(180deg,#44FFBB 0%,var(--neon) 40%,#00DD77 100%);
+  box-shadow:0 0 24px rgba(0,255,135,.3),0 4px 0 #009950,inset 0 1px 0 rgba(255,255,255,.25);
+  animation:glow-btn 2s infinite;
+  text-shadow:0 1px 0 rgba(255,255,255,.3)}
+@keyframes glow-btn{0%,100%{box-shadow:0 0 16px rgba(0,255,135,.2),0 4px 0 #009950}
+  50%{box-shadow:0 0 30px rgba(0,255,135,.4),0 4px 0 #009950}}
 
-/* achievements */
-.ach-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ach{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:16px;text-align:center;transition:.2s}
-.ach.unlocked{border-color:rgba(0,255,135,.3);background:linear-gradient(135deg,var(--card),#1A2E1A);
-box-shadow:0 0 12px rgba(0,255,135,.1)}
-.ach.locked{opacity:.4}
-.ach .icon{font-size:32px;margin-bottom:6px}
-.ach .name{font-size:12px;font-weight:700;margin-bottom:2px}
-.ach .desc{font-size:10px;color:var(--text3)}
+/* stats */
+.stat-card{padding:14px;text-align:center}
+.stat-num{font-family:'Orbitron',monospace;font-size:24px;font-weight:900}
+.stat-label{font-size:9px;font-weight:700;color:var(--text3);margin-top:2px;
+  text-transform:uppercase;letter-spacing:.4px}
 
-/* mom tab */
-.rules-card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:20px;margin-bottom:12px}
-.rules-card h3{font-size:16px;font-weight:700;margin-bottom:10px}
-.rules-card p{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:10px}
-.rules-card p:last-child{margin-bottom:0}
-
-/* animations */
-@keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
-@keyframes glow{0%,100%{box-shadow:0 0 8px rgba(0,255,135,.3)}50%{box-shadow:0 0 20px rgba(0,255,135,.5)}}
-.pop{animation:popIn .3s cubic-bezier(.4,0,.2,1)}
-
-/* ——— RESPONSIVE ——— */
-
-/* iPhone SE / small phones (≤375px) */
-@media(max-width:375px){
-  .pg{padding:12px 12px 16px}
-  .rate-btns{gap:2px}
-  .rate-btns button{width:24px;height:28px;font-size:10px;border-radius:6px}
-  .dc{padding:12px 14px;gap:10px}
-  .dc-icon{width:40px;height:40px;font-size:20px}
-  .dc-title{font-size:13px}
-  .xp-num{font-size:26px}
-  .detail-header{padding:18px 16px}
-  .detail-header h2{font-size:18px}
-  .section-card{padding:16px}
-  .ach-grid{gap:8px}
-  .ach{padding:12px}
-  .ach .icon{font-size:26px}
+/* responsive */
+@media(max-width:374px){
+  .pg{padding:12px 10px 88px}
+  .rate-track button{height:28px;font-size:10px}
+  .dc{padding:12px;gap:10px}
+  .dc-icon{width:38px;height:38px;font-size:18px}
+  .dc-title{font-size:12px}
+  .mh{padding:22px 18px}
+  .mh h2{font-size:18px}
 }
-
-/* Tablets (≥600px) */
 @media(min-width:600px){
-  .pg{max-width:580px;padding:20px 24px 24px}
-  .overlay{padding:24px 24px 48px}
-  .xph{padding:28px 26px}
-  .xp-num{font-size:38px}
-  .lvl-badge{font-size:15px;padding:6px 18px}
-  .dc{padding:18px 22px;border-radius:18px}
-  .dc-icon{width:54px;height:54px;font-size:28px;border-radius:16px}
-  .dc-title{font-size:16px}
-  .dc-tag{font-size:12px}
-  .dc-xp .earned{font-size:18px}
-  .detail-header{padding:30px 26px;border-radius:24px}
-  .detail-header .emoji{font-size:48px}
-  .detail-header h2{font-size:26px}
-  .section-card{padding:24px;border-radius:18px}
-  .section-card p{font-size:15px}
-  .rate-btns{gap:6px}
-  .rate-btns button{width:34px;height:34px;font-size:13px;border-radius:10px}
-  .done-btn{padding:18px;font-size:16px;border-radius:16px}
-  .ach-grid{grid-template-columns:1fr 1fr 1fr;gap:12px}
-  .ach{padding:20px;border-radius:18px}
-  .ach .icon{font-size:38px}
-  .ach .name{font-size:14px}
-  .ach .desc{font-size:11px}
-  .paper-alert{padding:16px 20px;border-radius:16px}
-  .paper-alert p{font-size:14px}
-  .mom-bubble{padding:16px 20px}
-  .mom-bubble p{font-size:14.5px}
-  .refl-q{padding:14px 18px;font-size:14.5px;border-radius:14px}
-  .rules-card{padding:24px;border-radius:18px}
-  .rules-card h3{font-size:18px}
-  .rules-card p{font-size:14px}
-  .nav button{font-size:10px;padding:10px 4px}
-  .nav .ni{font-size:22px}
-  .back-btn{font-size:14px;padding:10px 20px}
+  .pg{max-width:580px;padding:20px 24px 92px}
+  .ov{padding:24px}
+  .dc{padding:16px 20px;gap:16px}
+  .dc-icon{width:52px;height:52px;font-size:26px;border-radius:14px}
+  .dc-title{font-size:15px}
+  .mh{padding:32px 28px}
+  .mh h2{font-size:24px}
+  .rate-track button{height:36px;font-size:12px;border-radius:8px}
+  .sec{padding:22px}
+  .ach-grid{grid-template-columns:repeat(3,1fr)}
 }
-
-/* Large tablets / landscape (≥900px) */
 @media(min-width:900px){
-  .pg{max-width:700px;padding:24px 32px 28px}
-  .overlay{padding:32px 32px 60px;max-width:700px;margin:0 auto}
-  .ach-grid{grid-template-columns:1fr 1fr 1fr 1fr;gap:14px}
-  .dc{gap:18px}
-  .xp-num{font-size:42px}
+  .pg{max-width:680px}
+  .ov>*{max-width:680px}
+  .ach-grid{grid-template-columns:repeat(4,1fr)}
 }
 </style>
 </head>
 <body>
 
-<div class="game-particles"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 <div id="app" style="position:relative;z-index:1">
-  <div style="text-align:center;padding:40vh 20px 0;font-family:sans-serif">
-    <div style="font-size:48px;margin-bottom:12px">⚡</div>
-    <div style="font-size:18px;font-weight:800;color:#00FF87;letter-spacing:1px">PROJETO IAN</div>
-    <div style="font-size:12px;color:#5A5A78;margin-top:8px">Carregando...</div>
+  <div style="text-align:center;padding:38vh 20px 0">
+    <div style="font-size:44px;margin-bottom:8px">⚡</div>
+    <div class="gf" style="font-size:16px;color:var(--neon);letter-spacing:2px">PROJETO IAN</div>
+    <div style="font-size:11px;color:var(--text3);margin-top:6px">Iniciando sistemas...</div>
   </div>
 </div>
-<!-- NAV BAR: always visible, outside #app -->
+
 <nav class="nav" id="main-nav">
-  <button id="nav-home" class="act" onclick="setTab('home')"><span class="ni">🏠</span>INÍCIO</button>
-  <button id="nav-missions" onclick="setTab('missions')"><span class="ni">⚔️</span>MISSÕES</button>
-  <button id="nav-achs" onclick="setTab('achs')"><span class="ni">🏆</span>CONQUISTAS</button>
-  <button id="nav-mom" onclick="setTab('mom')" style="display:none"><span class="ni">💛</span>MÃE</button>
+  <button id="nav-home" class="act" onclick="go('home')"><span class="ni">🏠</span>BASE</button>
+  <button id="nav-missions" onclick="go('missions')"><span class="ni">⚔️</span>MISSÕES</button>
+  <button id="nav-achs" onclick="go('achs')"><span class="ni">🏆</span>TROFÉUS</button>
+  <button id="nav-mom" onclick="go('mom')" style="display:none"><span class="ni">💛</span>MÃE</button>
 </nav>
-<noscript>
-  <div style="text-align:center;padding:30vh 20px 0;font-family:sans-serif;color:#E8E8F0">
-    <div style="font-size:48px;margin-bottom:12px">⚠️</div>
-    <div style="font-size:16px;font-weight:700;margin-bottom:8px">JavaScript necessário</div>
-    <div style="font-size:13px;color:#9898B0;max-width:300px;margin:0 auto;line-height:1.6">
-      Este app precisa ser aberto no navegador (Safari ou Chrome), não no visualizador de arquivos. 
-      Toque em Compartilhar (⬆️) e escolha "Abrir no Safari".
-    </div>
-  </div>
-</noscript>
+
+<noscript><div style="text-align:center;padding:30vh 20px;color:var(--text)">
+  <p style="font-size:14px">Abra este arquivo no <b>Safari</b> ou <b>Chrome</b>.</p>
+  <p style="font-size:12px;color:var(--text3);margin-top:8px">Toque em Compartilhar (⬆️) → "Abrir no Safari"</p>
+</div></noscript>
 
 <script>
-// ——— DATA ———
-const LEVELS=[
-  {name:"Noob",min:0,color:"#6B7280",icon:"⬜"},
-  {name:"Aprendiz",min:200,color:"#00D4FF",icon:"🟦"},
-  {name:"Jogador",min:500,color:"#A78BFA",icon:"🟪"},
-  {name:"Mestre",min:900,color:"#FBBF24",icon:"🟨"},
-  {name:"Lenda",min:1300,color:"#FF4D6A",icon:"🟥"},
+// ═══════════════════════════════════════
+//  GAME ENGINE — PROJETO IAN
+//  Serious Games Design Framework
+// ═══════════════════════════════════════
+
+// ——— PROGRESSION SYSTEM ———
+var LEVELS=[
+  {name:"Recruta",min:0,color:"#6B7280",icon:"🔰",tier:"BRONZE"},
+  {name:"Explorador",min:200,color:"#00D4FF",icon:"🧭",tier:"PRATA"},
+  {name:"Guerreiro",min:500,color:"#A78BFA",icon:"⚔️",tier:"OURO"},
+  {name:"Campeão",min:900,color:"#FFD700",icon:"🛡️",tier:"DIAMANTE"},
+  {name:"Lenda",min:1300,color:"#FF4D6A",icon:"👑",tier:"LENDÁRIO"},
 ];
 
-const ACHS=[
-  {id:"first",icon:"⚡",name:"Primeira Missão",desc:"Complete a 1ª missão",ck:p=>Object.values(p).some(d=>d&&d.done)},
-  {id:"prof",icon:"🎤",name:"Professor Ian",desc:"Complete a missão do Professor",ck:p=>p.d2?.done},
-  {id:"ten",icon:"🔥",name:"Memória 10!",desc:"Nota 10 em 'Quanto Lembrei'",ck:p=>Object.values(p).some(d=>d&&d.remember>=10)},
-  {id:"w1",icon:"🏅",name:"Semana 1 Clear",desc:"Complete toda a Semana 1",ck:p=>["d1","d2","d3","d4","d5","d6"].every(i=>p[i]?.done)},
-  {id:"pomo",icon:"⏱️",name:"Pomodoro Master",desc:"Complete a missão Pomodoro",ck:p=>p.d8?.done},
-  {id:"hard",icon:"💪",name:"Sem Medo",desc:"Enfrente a Dificuldade Produtiva",ck:p=>p.d10?.done},
-  {id:"w2",icon:"🏆",name:"Semana 2 Clear",desc:"Complete toda a Semana 2",ck:p=>["d7","d8","d9","d10","d11","d12"].every(i=>p[i]?.done)},
-  {id:"formula",icon:"👑",name:"Fórmula Ian",desc:"Crie seu método de estudo",ck:p=>p.d12?.done},
+// ——— ACHIEVEMENT SYSTEM ———
+var ACHS=[
+  {id:"first",i:"⚡",n:"Primeiro Passo",d:"Complete sua 1ª missão",t:"common",
+   ck:function(p){return vals(p).some(function(d){return d&&d.done})}},
+  {id:"prof",i:"🎤",n:"Mestre Professor",d:"Complete a missão Professor Ian",t:"rare",
+   ck:function(p){return p.d2&&p.d2.done}},
+  {id:"mem10",i:"🧠",n:"Memória Absoluta",d:"Nota 10 em 'Quanto Lembrei'",t:"epic",
+   ck:function(p){return vals(p).some(function(d){return d&&d.remember>=10})}},
+  {id:"love10",i:"❤️",n:"Paixão pelo Estudo",d:"Nota 10 em 'Quanto Gostei'",t:"rare",
+   ck:function(p){return vals(p).some(function(d){return d&&d.enjoyed>=10})}},
+  {id:"w1",i:"🏅",n:"Semana 1 Clear",d:"Complete toda a Semana 1",t:"epic",
+   ck:function(p){return ["d1","d2","d3","d4","d5","d6"].every(function(k){return p[k]&&p[k].done})}},
+  {id:"pomo",i:"⏱️",n:"Senhor do Tempo",d:"Complete a missão Pomodoro",t:"rare",
+   ck:function(p){return p.d8&&p.d8.done}},
+  {id:"hard",i:"💪",n:"Sem Medo",d:"Enfrente a Dificuldade Produtiva",t:"epic",
+   ck:function(p){return p.d10&&p.d10.done}},
+  {id:"w2",i:"🏆",n:"Semana 2 Clear",d:"Complete toda a Semana 2",t:"epic",
+   ck:function(p){return ["d7","d8","d9","d10","d11","d12"].every(function(k){return p[k]&&p[k].done})}},
+  {id:"formula",i:"👑",n:"Fórmula Ian",d:"Crie seu método de estudo",t:"legendary",
+   ck:function(p){return p.d12&&p.d12.done}},
+  {id:"all",i:"💎",n:"Perfeição Total",d:"Complete TODAS as missões",t:"legendary",
+   ck:function(p){return DAYS.every(function(d){return p[d.id]&&p[d.id].done})}},
 ];
+var TIER_COLORS={common:"#9CA3AF",rare:"#00D4FF",epic:"#A78BFA",legendary:"#FFD700"};
+var TIER_NAMES={common:"COMUM",rare:"RARO",epic:"ÉPICO",legendary:"LENDÁRIO"};
+function vals(o){return Object.keys(o).map(function(k){return o[k]})}
 
-const DAYS=[
-  // WEEK 1
-  {id:"d1",w:1,emoji:"📝",title:"O Resumo Escrito",tag:"Leitura + Escrita",color:"#00D4FF",bg:"#0A1E2E",
-   mission:"Escolha uma matéria que você precisa estudar. Leia o conteúdo no caderno ou livro por 10 minutos. Depois FECHA TUDO e escreve no caderno, com suas palavras, o que lembrou. Não precisa ser perfeito!",
-   paper:"Pegue seu caderno e uma caneta. O resumo tem que ser escrito À MÃO — nada de digitar!",
-   mom:["Ian, lê pra mim o resumo que você escreveu? Quero ouvir!","De 0 a 10, quanto foi fácil lembrar pra escrever? E quanto gostou de fazer assim?"],
-   tip:"O cérebro processa informação de forma diferente quando escreve à mão. Escrever força a reorganizar o conteúdo."},
-  {id:"d2",w:1,emoji:"🎤",title:"O Professor Ian",tag:"Explicação Verbal",color:"#A78BFA",bg:"#1A152E",
-   mission:"Estude um conteúdo por 10 minutos do jeito que quiser. Depois grave um áudio de 2-3 minutos no celular explicando o assunto como se você fosse o professor. Manda o áudio pra mãe!",
-   paper:"Antes de gravar, faça um ROTEIRO no caderno — liste os 3-5 pontos que quer explicar na ordem certa.",
-   mom:["Ouvi seu áudio! Você explicou [cite algo que ele disse]. Me conta: foi fácil organizar na cabeça pra explicar?","De 0 a 10, quanto lembrou e quanto gostou?"],
+// ——— MISSION DATA ———
+var DAYS=[
+  {id:"d1",w:1,emoji:"📝",title:"O Resumo Escrito",tag:"Leitura + Escrita",
+   color:"#00D4FF",bg:"rgba(0,212,255,.08)",
+   mission:"Escolha uma matéria. Leia o conteúdo por 10 minutos. Depois FECHA TUDO e escreve no caderno, com suas palavras, o que lembrou. Não precisa ser perfeito — é o que ficou na cabeça.",
+   paper:"Pegue seu caderno e caneta. O resumo é escrito À MÃO — nada de digitar!",
+   mom:["Ian, lê pra mim o resumo que você escreveu? Quero ouvir!","De 0 a 10, quanto foi fácil lembrar? E quanto gostou de fazer assim?"],
+   tip:"O cérebro processa informação diferente quando escreve à mão. Escrever força a reorganizar o conteúdo."},
+  {id:"d2",w:1,emoji:"🎤",title:"O Professor Ian",tag:"Explicação Verbal",
+   color:"#A78BFA",bg:"rgba(167,139,250,.08)",
+   mission:"Estude um conteúdo por 10 minutos. Depois grave um áudio de 2-3 min explicando como se fosse o professor. Manda o áudio pra mãe!",
+   paper:"Faça um ROTEIRO no caderno antes de gravar — liste os 3-5 pontos na ordem certa.",
+   mom:["Ouvi seu áudio! Você explicou [cite algo]. Foi fácil organizar na cabeça?","De 0 a 10, quanto lembrou e quanto gostou?"],
    tip:"Autoexplicação é das técnicas mais eficazes. Inverte o papel: de quem 'não sabe' pra quem ensina!"},
-  {id:"d3",w:1,emoji:"🎨",title:"O Mapa Visual",tag:"Visual + Espacial",color:"#14F0C0",bg:"#0A2420",
-   mission:"Pegue uma folha EM BRANCO e desenhe um mapa mental: tema no centro, ramificações com subtemas. Use cores diferentes, setas, desenhos. Não precisa ser artístico — é pra organizar ideias. Tire foto e manda pra mãe!",
-   paper:"Folha branca (sem linha) + canetas coloridas ou lápis de cor. Quanto mais visual, melhor!",
-   mom:["Vi seu mapa! Me explica como você organizou — por que esse galho saiu daqui?","De 0 a 10, quanto lembrou e quanto gostou?"],
+  {id:"d3",w:1,emoji:"🎨",title:"O Mapa Visual",tag:"Visual + Espacial",
+   color:"#14F0C0",bg:"rgba(20,240,192,.08)",
+   mission:"Folha EM BRANCO: desenhe um mapa mental. Tema no centro, ramificações com subtemas. Use cores, setas, desenhos. Tire foto e manda pra mãe!",
+   paper:"Folha branca + canetas coloridas. Quanto mais visual, melhor!",
+   mom:["Vi seu mapa! Me explica como organizou — por que esse galho saiu daqui?","De 0 a 10, quanto lembrou e quanto gostou?"],
    tip:"Mapa mental obriga o cérebro a criar hierarquia e conexões entre conceitos."},
-  {id:"d4",w:1,emoji:"🧠",title:"O Quiz",tag:"Recuperação Ativa",color:"#FF8C00",bg:"#2E1A0A",
-   mission:"Estude por 10 minutos. Depois FECHA TUDO e escreve 5 perguntas no caderno como se fosse o professor fazendo a prova. Tenta responder sem olhar. Depois confere!",
-   paper:"Perguntas E respostas no caderno. Marque ✓ ou ✗ em cada uma depois de conferir.",
-   mom:["Me faz uma das perguntas que você criou — quero ver se EU sei! 😄","De 0 a 10, quanto lembrou e quanto gostou?"],
+  {id:"d4",w:1,emoji:"🧠",title:"O Quiz",tag:"Recuperação Ativa",
+   color:"#FF8C00",bg:"rgba(255,140,0,.08)",
+   mission:"Estude 10 minutos. FECHA TUDO. Escreve 5 perguntas no caderno como se fosse o professor. Responda sem olhar. Depois confere!",
+   paper:"Perguntas E respostas no caderno. Marque ✓ ou ✗ depois de conferir.",
+   mom:["Me faz uma das perguntas — quero ver se EU sei! 😄","De 0 a 10, quanto lembrou e quanto gostou?"],
    tip:"Recuperação ativa é a estratégia com MAIS evidência científica. O cérebro aprende mais tentando lembrar do que relendo."},
-  {id:"d5",w:1,emoji:"📺",title:"Vídeo + Anotação",tag:"Audiovisual + Escrita",color:"#00D4FF",bg:"#0A1E2E",
-   mission:"Procure no YouTube um vídeo curto (5-10 min) sobre o conteúdo. ENQUANTO assiste, anote no caderno as 3 coisas mais importantes. Depois escreva com suas palavras o que aprendeu de novo. Canais: Descomplica, Me Salva!, Manual do Mundo.",
-   paper:"Assista no celular/tablet mas as anotações são NO CADERNO! Uma mão no play, outra na caneta.",
-   mom:["O que você anotou de novo? O vídeo explicou diferente do professor?","Você acha que vídeo funciona melhor ANTES ou DEPOIS de ler a matéria?"],
+  {id:"d5",w:1,emoji:"📺",title:"Vídeo + Anotação",tag:"Audiovisual + Escrita",
+   color:"#00D4FF",bg:"rgba(0,212,255,.08)",
+   mission:"YouTube: vídeo curto (5-10 min) sobre o conteúdo. ENQUANTO assiste, anote no caderno as 3 coisas mais importantes. Depois escreva o que aprendeu de novo. Canais: Descomplica, Me Salva!, Manual do Mundo.",
+   paper:"Assista no tablet mas anotações NO CADERNO. Uma mão no play, outra na caneta.",
+   mom:["O que anotou de novo? O vídeo explicou diferente do professor?","Vídeo funciona melhor ANTES ou DEPOIS de ler a matéria?"],
    tip:"Observe se ele retém mais com vídeo. A pergunta 'antes ou depois' estimula pensar sobre o PROCESSO."},
-  {id:"d6",w:1,emoji:"🪞",title:"Dia de Reflexão",tag:"Autoconhecimento",color:"#FFE600",bg:"#2E2A0A",refl:true,
-   mission:"Hora de olhar pra trás! Responda estas perguntas no caderno com calma — não existe resposta certa ou errada.",
-   paper:"Escreva no caderno. Esse registro é importante — você vai olhar de novo na Semana 2.",
-   reflQs:["Qual jeito de estudar eu mais GOSTEI essa semana?","Com qual eu LEMBREI mais do conteúdo?","Qual eu NÃO gostei e por quê?","Se eu pudesse misturar dois jeitos, quais seriam?","Uma coisa que descobri sobre mim essa semana:"],
-   mom:["Filho, essa semana não foi sobre nota — foi sobre você se conhecer. Agora você sabe como VOCÊ aprende. Isso é um superpoder que muitos adultos não têm.","Qual combinação de jeitos você quer usar na semana que vem?"],
-   tip:"Essa é a conversa mais importante. É aqui que ele sai de 'eu sou ruim' pra 'eu sei como funciono'."},
-  // WEEK 2
-  {id:"d7",w:2,emoji:"📋",title:"Meu Plano de Estudo",tag:"Planejamento",color:"#00FF87",bg:"#0A2E1A",
-   mission:"Olhe suas provas e tarefas da semana. No caderno, monte SEU PRÓPRIO plano: o que estudar em cada dia, quanto tempo, e qual método usar (dos que testou na Semana 1). Tire foto e manda pra mãe!",
-   paper:"Use uma página inteira. Faça uma tabela: Dia | Matéria | Método | Tempo | Feito?",
-   mom:["Vi seu plano! Gostei que você escolheu [método] pra [matéria]. Como decidiu?","Tá realista o tempo? Lembra: 20 min focado vale mais que 1 hora distraído."],
-   tip:"Primeira vez que ELE planeja. Não corrija a menos que seja irreal. Deixe errar e ajustar — isso É autonomia."},
-  {id:"d8",w:2,emoji:"⏱️",title:"Missão Pomodoro",tag:"Gestão de Tempo",color:"#FF4D6A",bg:"#2E0A14",
-   mission:"Teste a técnica Pomodoro: estude 25 minutos focado (celular virado pra baixo!), depois descanse 5. Faça 2 ciclos. No caderno, anote o que conseguiu em cada bloco.",
-   paper:"No caderno: Pomodoro 1 — o que estudei, o que rendi. Pomodoro 2 — idem. Use timer no celular!",
-   mom:["Como foi estudar com timer? Rendeu mais que o normal?","O que você fez no descanso de 5 min?"],
-   tip:"Pomodoro funciona muito bem pra quem sente que 'estuda muito e não rende'. Foco de qualidade > horas de quantidade."},
-  {id:"d9",w:2,emoji:"🔄",title:"Estudo Espaçado",tag:"Memória de Longo Prazo",color:"#A78BFA",bg:"#1A152E",
-   mission:"Releia o resumo ou mapa da Semana 1. SEM OLHAR, escreva o que ainda lembra. Compare. Circule com caneta colorida o que esqueceu — esses são seus pontos de revisão!",
-   paper:"Use caneta de cor diferente pra marcar o que esqueceu. Isso vira seu guia de revisão!",
-   mom:["Quanto você ainda lembrava da semana passada? Ficou surpreso?","Os pontos que esqueceu — como vai revisar eles?"],
-   tip:"A maioria estuda tudo na véspera e esquece em 3 dias. Revisar com intervalo consolida a memória de longo prazo."},
-  {id:"d10",w:2,emoji:"🤔",title:"Dificuldade Produtiva",tag:"Resiliência",color:"#14F0C0",bg:"#0A2420",
-   mission:"Escolha a matéria MAIS DIFÍCIL. Tente resolver 3 exercícios SOZINHO antes de pedir ajuda. No caderno: o que tentei, onde travei, como resolvi (ou não). Não apague os erros!",
-   paper:"O caderno hoje é um DIÁRIO DE TENTATIVAS. Erros ficam! Eles são o aprendizado.",
-   mom:["Me conta onde travou. O que seu cérebro tentou fazer pra resolver?","Travar e insistir é quando o cérebro MAIS cresce. A neurociência prova isso!"],
-   tip:"'Dificuldade desejável' é central na ciência da aprendizagem. Quando é fácil demais, o cérebro não muda."},
-  {id:"d11",w:2,emoji:"📊",title:"Eu, Monitor",tag:"Auto-avaliação",color:"#FF8C00",bg:"#2E1A0A",
-   mission:"ANTES de estudar, escreva: 'Sobre esse assunto, eu sei ___% e não sei ___%. As partes que não sei: ___.' DEPOIS de estudar, atualize os percentuais.",
-   paper:"Antes E depois no caderno. A diferença mostra pro seu cérebro que ele evoluiu — prova concreta!",
-   mom:["Quanto mudou o percentual? Como se sentiu vendo a diferença?","Essa técnica de medir antes e depois — usaria sozinho?"],
-   tip:"Metacognição diferencia estudantes eficientes. Calibrar o próprio conhecimento reduz dependência de validação externa."},
-  {id:"d12",w:2,emoji:"🏆",title:"A Fórmula Ian",tag:"Identidade de Estudante",color:"#FFE600",bg:"#2E2A0A",refl:true,
-   mission:"Última missão! Hora de criar a SUA fórmula de estudo — o Método Ian. Essa fórmula vai ficar colada na parede do seu quarto!",
-   paper:"Escreva numa folha ESPECIAL. Pode decorar, usar cores — vai ser seu troféu real!",
-   reflQs:["Meu método ideal de estudo é: (descreva a combinação que funciona pra você)","O tempo ideal de estudo pra mim é: ___ minutos por sessão","Antes de estudar, eu devo: ___","Quando eu travo, meu plano é: ___","Uma coisa que descobri sobre mim nessas duas semanas:","Uma coisa que quero dizer pra minha mãe:"],
-   mom:["Me lê a Fórmula Ian? Quero conhecer o método que você inventou.","Estou muito orgulhosa — não pela nota, mas porque você se conheceu. Isso ninguém tira de você."],
-   tip:"O objetivo final é IDENTIDADE de estudante. Não 'eu sou burro' e nem 'eu sou inteligente' — mas 'eu sei como funciono'. Autoestima baseada em evidência."},
+  {id:"d6",w:1,emoji:"🪞",title:"Dia de Reflexão",tag:"Boss — Autoconhecimento",
+   color:"#FFD700",bg:"rgba(255,215,0,.08)",refl:true,
+   mission:"BOSS LEVEL! Responda estas perguntas no caderno com calma — não existe resposta certa.",
+   paper:"Escreva no caderno. Esse registro é importante — você vai rever na Semana 2.",
+   rqs:["Qual jeito de estudar eu mais GOSTEI essa semana?","Com qual eu LEMBREI mais do conteúdo?","Qual eu NÃO gostei e por quê?","Se eu pudesse misturar dois jeitos, quais seriam?","Uma coisa que descobri sobre mim essa semana:"],
+   mom:["Filho, essa semana não foi sobre nota — foi sobre você se conhecer. Agora você sabe como VOCÊ aprende. Isso é um superpoder.","Qual combinação quer usar na semana que vem?"],
+   tip:"Conversa mais importante. É aqui que ele sai de 'eu sou ruim' pra 'eu sei como funciono'."},
+  {id:"d7",w:2,emoji:"📋",title:"Meu Plano de Estudo",tag:"Planejamento",
+   color:"#00FF87",bg:"rgba(0,255,135,.08)",
+   mission:"Olhe provas e tarefas da semana. No caderno, monte SEU plano: o que estudar, quanto tempo, qual método (dos que testou). Tire foto e manda pra mãe!",
+   paper:"Página inteira. Tabela: Dia | Matéria | Método | Tempo | Feito?",
+   mom:["Vi seu plano! Gostei que escolheu [método] pra [matéria]. Como decidiu?","Tá realista o tempo? 20 min focado > 1 hora distraído."],
+   tip:"Primeira vez que ELE planeja. Não corrija a menos que irreal. Errar e ajustar É autonomia."},
+  {id:"d8",w:2,emoji:"⏱️",title:"Missão Pomodoro",tag:"Gestão de Tempo",
+   color:"#FF4D6A",bg:"rgba(255,77,106,.08)",
+   mission:"Técnica Pomodoro: 25 min focado (celular virado!), 5 min descanso. Faça 2 ciclos. Anote no caderno o que rendeu em cada bloco.",
+   paper:"No caderno: Pomodoro 1 — o que estudei, o que rendi. Pomodoro 2 — idem.",
+   mom:["Como foi estudar com timer? Rendeu mais?","O que fez no descanso?"],
+   tip:"Pomodoro funciona pra quem sente que 'estuda muito e não rende'. Foco de qualidade > horas."},
+  {id:"d9",w:2,emoji:"🔄",title:"Estudo Espaçado",tag:"Memória de Longo Prazo",
+   color:"#A78BFA",bg:"rgba(167,139,250,.08)",
+   mission:"Releia o resumo/mapa da Semana 1. SEM OLHAR, escreva o que ainda lembra. Compare. Circule com caneta colorida o que esqueceu — esses são seus pontos de revisão!",
+   paper:"Caneta de cor diferente pro que esqueceu. Vira seu guia de revisão!",
+   mom:["Quanto ainda lembrava da semana passada?","Os pontos que esqueceu — como vai revisar?"],
+   tip:"Maioria estuda na véspera e esquece em 3 dias. Intervalo consolida memória de longo prazo."},
+  {id:"d10",w:2,emoji:"🤔",title:"Dificuldade Produtiva",tag:"Boss — Resiliência",
+   color:"#14F0C0",bg:"rgba(20,240,192,.08)",
+   mission:"BOSS LEVEL! Matéria MAIS DIFÍCIL. Tente 3 exercícios SOZINHO antes de pedir ajuda. No caderno: o que tentei, onde travei, como resolvi (ou não). NÃO apague erros!",
+   paper:"Caderno = diário de tentativas. Erros ficam! São o aprendizado.",
+   mom:["Onde travou? O que seu cérebro tentou?","Travar e insistir é quando o cérebro MAIS cresce. Neurociência prova!"],
+   tip:"'Dificuldade desejável' é central na ciência da aprendizagem. Fácil demais = cérebro não muda."},
+  {id:"d11",w:2,emoji:"📊",title:"Eu, Monitor",tag:"Auto-avaliação",
+   color:"#FF8C00",bg:"rgba(255,140,0,.08)",
+   mission:"ANTES de estudar: 'Sobre esse assunto, eu sei ___% e não sei ___%.' DEPOIS de estudar: atualize. A diferença é a prova do seu progresso!",
+   paper:"Antes E depois no caderno. A diferença mostra que seu cérebro evoluiu!",
+   mom:["Quanto mudou o percentual? Como se sentiu?","Usaria essa técnica sozinho?"],
+   tip:"Metacognição diferencia estudantes eficientes. Calibrar conhecimento reduz dependência de validação externa."},
+  {id:"d12",w:2,emoji:"🏆",title:"A Fórmula Ian",tag:"Boss Final — Identidade",
+   color:"#FFD700",bg:"rgba(255,215,0,.08)",refl:true,
+   mission:"BOSS FINAL! Crie a SUA fórmula de estudo — o Método Ian. Vai ficar colada na parede do seu quarto como troféu!",
+   paper:"Folha ESPECIAL. Decore, use cores — é seu troféu real!",
+   rqs:["Meu método ideal de estudo é:","Tempo ideal por sessão: ___ minutos","Antes de estudar, eu devo:","Quando eu travo, meu plano é:","Uma coisa que descobri sobre mim:","Uma coisa que quero dizer pra minha mãe:"],
+   mom:["Me lê a Fórmula Ian? Quero conhecer o método que você inventou.","Estou muito orgulhosa — não pela nota, mas porque você se conheceu. Ninguém tira isso de você."],
+   tip:"Objetivo final: IDENTIDADE. Não 'burro' nem 'inteligente' — 'eu sei como funciono'. Autoestima baseada em evidência."},
 ];
 
-// ——— STATE ———
-let state={tab:"home",week:1,detail:null,showMom:false,momUnlocked:false,progress:{}};
-const LS_KEY="projeto-ian-v2";
-const MOM_PIN="1234";
-let tapCount=0;let tapTimer=null;
+// ——— STATE ENGINE ———
+var S={tab:"home",detail:null,showMom:false,momOn:false,p:{}};
+var LS="ian-game-v3";
+var PIN="1234";
+var taps=0,tapT=null;
+
+function load(){try{var d=localStorage.getItem(LS);if(d)S.p=JSON.parse(d)}catch(e){}}
+function save(){try{localStorage.setItem(LS,JSON.stringify(S.p))}catch(e){}}
+
+function xp(){
+  var total=0;
+  DAYS.forEach(function(d){var p=S.p[d.id];if(!p||!p.done)return;
+    if(d.refl){total+=120}else{total+=50+(p.remember||0)*5+(p.enjoyed||0)*5}});
+  return total;
+}
+function lv(x){var l=LEVELS[0];LEVELS.forEach(function(v){if(x>=v.min)l=v});return l}
+function nlv(x){for(var i=0;i<LEVELS.length;i++)if(x<LEVELS[i].min)return LEVELS[i];return null}
+function done(){return DAYS.filter(function(d){return S.p[d.id]&&S.p[d.id].done}).length}
+
 function secretTap(){
-  tapCount++;
-  clearTimeout(tapTimer);
-  // Visual feedback - subtle flash on the ⚡ element
-  var el=document.getElementById('secret-bolt');
-  if(el){el.style.transform='scale(1.2)';setTimeout(function(){el.style.transform='scale(1)';},150);}
-  tapTimer=setTimeout(function(){tapCount=0;},2000);
-  if(tapCount>=5){
-    tapCount=0;
-    setTimeout(function(){
-      var pin=prompt("🔒 Senha de acesso:");
-      if(pin===MOM_PIN){state.momUnlocked=true;state.tab="mom";render();}
-      else if(pin!==null){alert("Senha incorreta!");}
-    },200);
-  }
+  taps++;clearTimeout(tapT);
+  var el=document.getElementById("bolt");
+  if(el){el.style.transform="scale(1.15)";setTimeout(function(){el.style.transform="scale(1)"},150)}
+  tapT=setTimeout(function(){taps=0},2000);
+  if(taps>=5){taps=0;setTimeout(function(){
+    var pin=prompt("🔒 Código de acesso:");
+    if(pin===PIN){S.momOn=true;S.tab="mom";render()}
+    else if(pin!==null)alert("Código incorreto")
+  },200)}
 }
 
-function load(){try{const d=localStorage.getItem(LS_KEY);if(d)state.progress=JSON.parse(d);}catch(e){}}
-function save(){try{localStorage.setItem(LS_KEY,JSON.stringify(state.progress));}catch(e){}}
-
-function getXP(){
-  let xp=0;
-  DAYS.forEach(d=>{
-    const p=state.progress[d.id];
-    if(!p?.done)return;
-    if(d.refl){xp+=100;}
-    else{xp+=50+(p.remember||0)*5+(p.enjoyed||0)*5;}
-  });
-  return xp;
-}
-function getLevel(xp){
-  let lv=LEVELS[0];
-  for(const l of LEVELS)if(xp>=l.min)lv=l;
-  return lv;
-}
-function getNextLevel(xp){
-  for(const l of LEVELS)if(xp<l.min)return l;
-  return null;
-}
-function getDoneCount(){return DAYS.filter(d=>state.progress[d.id]?.done).length;}
-
-// ——— RENDER ———
+// ——— NAV ———
 function updateNav(){
-  var nav=document.getElementById("main-nav");
-  if(!nav)return;
-  // Hide nav when in detail view
-  nav.style.display=state.detail?"none":"flex";
-  // Update active states
-  var tabs=["home","missions","achs","mom"];
-  tabs.forEach(function(t){
-    var btn=document.getElementById("nav-"+t);
-    if(btn){
-      btn.className=state.tab===t?"act":"";
-      if(t==="mom"){btn.style.display=state.momUnlocked?"flex":"none";}
-    }
-  });
+  var nav=document.getElementById("main-nav");if(!nav)return;
+  nav.style.display=S.detail?"none":"flex";
+  ["home","missions","achs","mom"].forEach(function(t){
+    var b=document.getElementById("nav-"+t);if(!b)return;
+    b.className=S.tab===t?"act":"";
+    if(t==="mom")b.style.display=S.momOn?"flex":"none"
+  })
 }
 
+// ——— RENDER ENGINE ———
 function render(){
   var app=document.getElementById("app");
-  var html="";
+  if(S.detail){app.innerHTML=rDetail();updateNav();return}
+  var h='<div class="pg '+(S.tab==="home"?"act":"")+'">'+ rHome()+'</div>';
+  h+='<div class="pg '+(S.tab==="missions"?"act":"")+'">'+ rMissions()+'</div>';
+  h+='<div class="pg '+(S.tab==="achs"?"act":"")+'">'+ rAchs()+'</div>';
+  if(S.momOn)h+='<div class="pg '+(S.tab==="mom"?"act":"")+'">'+ rMom()+'</div>';
+  app.innerHTML=h;updateNav()
+}
 
-  if(state.detail){
-    html=renderDetail();
+// ——— HOME ———
+function rHome(){
+  var x=xp(),l=lv(x),n=nlv(x),d=done(),t=DAYS.length;
+  var pct=n?Math.min(100,((x-l.min)/(n.min-l.min))*100):100;
+  var next=DAYS.filter(function(d){return!S.p[d.id]||!S.p[d.id].done})[0];
+  var w2lock=!S.p.d6||!S.p.d6.done;
+
+  var h='<div style="text-align:center;padding:20px 0 8px">';
+  h+='<div id="bolt" style="font-size:44px;cursor:default;user-select:none;transition:transform .15s" onclick="secretTap()">⚡</div>';
+  h+='<h1 class="gf" style="font-size:18px;letter-spacing:2px;margin-top:4px;background:linear-gradient(90deg,var(--neon),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent">PROJETO IAN</h1>';
+  h+='<p style="font-size:10px;color:var(--text3);margin-top:2px;letter-spacing:1px">A JORNADA DO ESTUDANTE</p></div>';
+
+  // XP card
+  h+='<div class="glass" style="padding:20px;margin-bottom:12px">';
+  h+='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">';
+  h+='<div style="display:flex;align-items:center;gap:8px"><span style="font-size:20px">'+l.icon+'</span>';
+  h+='<div><div class="gf" style="font-size:11px;color:'+l.color+';letter-spacing:1px">'+l.name.toUpperCase()+'</div>';
+  h+='<div style="font-size:9px;color:var(--text3)">'+l.tier+'</div></div></div>';
+  h+='<div class="gf" style="font-size:24px;color:var(--neon)">'+x+'<span style="font-size:11px;color:var(--text2)"> XP</span></div></div>';
+  h+='<div class="xp-track"><div class="xp-fill" style="width:'+pct+'%"></div></div>';
+  h+='<div style="font-size:9px;color:var(--text3);margin-top:6px;text-align:right">'+(n?(n.min-x)+' XP → '+n.name:'NÍVEL MÁXIMO')+'</div></div>';
+
+  // Stats
+  h+='<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">';
+  h+='<div class="glass stat-card"><div class="stat-num" style="color:var(--neon)">'+d+'</div><div class="stat-label">Missões</div></div>';
+  h+='<div class="glass stat-card"><div class="stat-num" style="color:var(--gold)">'+ACHS.filter(function(a){return a.ck(S.p)}).length+'</div><div class="stat-label">Troféus</div></div>';
+  h+='<div class="glass stat-card"><div class="stat-num" style="color:var(--blue)">'+Math.round(d/t*100)+'%</div><div class="stat-label">Progresso</div></div></div>';
+
+  // Next mission
+  if(next){
+    var locked=next.w===2&&w2lock;
+    h+='<div class="glass" style="padding:18px">';
+    h+='<div class="gf" style="font-size:9px;color:var(--neon);letter-spacing:1.5px;margin-bottom:10px">PRÓXIMA MISSÃO</div>';
+    h+='<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">';
+    h+='<div style="width:48px;height:48px;border-radius:14px;background:'+next.bg+';display:flex;align-items:center;justify-content:center;font-size:26px">'+next.emoji+'</div>';
+    h+='<div><div style="font-size:14px;font-weight:700">'+next.title+'</div>';
+    h+='<div style="font-size:10px;color:'+next.color+';font-weight:600">'+next.tag+'</div></div></div>';
+    if(locked){h+='<div style="padding:10px;background:rgba(255,140,0,.08);border-radius:10px;font-size:11px;color:var(--orange);text-align:center">🔒 Complete a Semana 1 para desbloquear</div>'}
+    else{h+='<button class="btn-main btn-green" onclick="openDay(\''+next.id+'\')">⚡ INICIAR MISSÃO</button>'}
+    h+='</div>'
   } else {
-    html=
-      '<div class="pg '+(state.tab==='home'?'act':'')+'" id="pg-home">'+renderHome()+'</div>'+
-      '<div class="pg '+(state.tab==='missions'?'act':'')+'" id="pg-missions">'+renderMissions()+'</div>'+
-      '<div class="pg '+(state.tab==='achs'?'act':'')+'" id="pg-achs">'+renderAchs()+'</div>'+
-      (state.momUnlocked?'<div class="pg '+(state.tab==='mom'?'act':'')+'" id="pg-mom">'+renderMom()+'</div>':'');
+    h+='<div class="glass" style="padding:24px;text-align:center;border-color:rgba(0,255,135,.2)">';
+    h+='<div style="font-size:40px;margin-bottom:8px">🎉</div>';
+    h+='<div class="gf" style="font-size:14px;color:var(--neon);letter-spacing:1px">JORNADA COMPLETA!</div>';
+    h+='<p style="font-size:12px;color:var(--text2);margin-top:6px">A Fórmula Ian é seu troféu permanente.</p></div>'
   }
-  app.innerHTML=html;
-  updateNav();
+  return h
 }
 
-function renderHome(){
-  const xp=getXP(), lv=getLevel(xp), nl=getNextLevel(xp);
-  const done=getDoneCount(), total=DAYS.length;
-  const pct=nl?Math.min(100,((xp-lv.min)/(nl.min-lv.min))*100):100;
+// ——— MISSIONS LIST ———
+function rMissions(){
+  var w2lock=!S.p.d6||!S.p.d6.done;
+  var h='<div style="text-align:center;padding:12px 0 14px">';
+  h+='<div class="gf" style="font-size:14px;color:var(--blue);letter-spacing:1.5px">CAPÍTULO 1</div>';
+  h+='<div style="font-size:18px;font-weight:800;margin-top:2px">Descoberta</div>';
+  h+='<div style="font-size:10px;color:var(--text3);margin-top:2px">Descubra como você aprende melhor</div></div>';
 
-  return `
-  <div style="text-align:center;padding:24px 0 8px;position:relative">
-    <div style="font-size:10px;color:var(--text3);letter-spacing:4px;margin-bottom:4px">▪️ ▫️ ▪️ ▫️ ▪️ ▫️ ▪️</div>
-    <div id="secret-bolt" style="font-size:48px;margin-bottom:4px;cursor:default;user-select:none;transition:transform .15s" onclick="secretTap()">⚡</div>
-    <h1 class="gf" style="font-size:24px;letter-spacing:1px;background:linear-gradient(90deg,var(--ng),var(--nb),var(--np));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">PROJETO IAN</h1>
-    <p style="font-size:12px;color:var(--text3);margin-top:2px">Descubra seu superpoder de estudante</p>
-    <div style="margin-top:8px;font-size:10px;color:var(--text3);letter-spacing:2px">🎮 ⭐ 💎 ⭐ 🎮</div>
-  </div>
-  <div class="xph pixel-corners">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-      <div class="lvl-badge"><span style="font-size:18px">${lv.icon}</span><span style="color:${lv.color}">${lv.name}</span></div>
-      <div style="font-size:12px;color:var(--text3)">❤️❤️❤️</div>
-    </div>
-    <div class="xp-num" style="color:var(--ng)">${xp}<span> XP</span></div>
-    <div class="xp-label">${nl?`${nl.min-xp} XP para ${nl.name}`:'NÍVEL MÁXIMO!'}</div>
-    <div class="xp-track"><div class="xp-fill" style="width:${pct}%"></div></div>
-  </div>
-  <div style="display:flex;gap:10px;margin-bottom:16px">
-    <div style="flex:1;background:var(--card);border-radius:14px;padding:14px 16px;border:1px solid var(--border);text-align:center">
-      <div style="font-size:14px;margin-bottom:2px">⚔️</div>
-      <div style="font-size:22px;font-weight:800;color:var(--ng)">${done}</div>
-      <div style="font-size:9px;color:var(--text3);font-weight:700">MISSÕES</div>
-    </div>
-    <div style="flex:1;background:var(--card);border-radius:14px;padding:14px 16px;border:1px solid var(--border);text-align:center">
-      <div style="font-size:14px;margin-bottom:2px">💎</div>
-      <div style="font-size:22px;font-weight:800;color:var(--ny)">${ACHS.filter(a=>a.ck(state.progress)).length}</div>
-      <div style="font-size:9px;color:var(--text3);font-weight:700">CONQUISTAS</div>
-    </div>
-    <div style="flex:1;background:var(--card);border-radius:14px;padding:14px 16px;border:1px solid var(--border);text-align:center">
-      <div style="font-size:14px;margin-bottom:2px">📊</div>
-      <div style="font-size:22px;font-weight:800;color:var(--nb)">${Math.round(done/total*100)}%</div>
-      <div style="font-size:9px;color:var(--text3);font-weight:700">PROGRESSO</div>
-    </div>
-  </div>
-  ${renderNextMission()}
-  `;
+  var w1=DAYS.filter(function(d){return d.w===1});
+  var w2=DAYS.filter(function(d){return d.w===2});
+  w1.forEach(function(d,i){h+=rDayCard(d,i,w1,false)});
+
+  h+='<div style="text-align:center;padding:18px 0 14px">';
+  h+='<div class="gf" style="font-size:14px;color:var(--purple);letter-spacing:1.5px">CAPÍTULO 2</div>';
+  h+='<div style="font-size:18px;font-weight:800;margin-top:2px">Autonomia</div>';
+  h+='<div style="font-size:10px;color:var(--text3);margin-top:2px">Assuma o controle dos seus estudos</div></div>';
+
+  if(w2lock)h+='<div class="glass" style="padding:12px;text-align:center;font-size:11px;color:var(--orange);margin-bottom:10px">🔒 Complete o Boss da Semana 1 para desbloquear</div>';
+  w2.forEach(function(d,i){h+=rDayCard(d,i,w2,w2lock)});
+  return h
 }
 
-function renderNextMission(){
-  const next=DAYS.find(d=>!state.progress[d.id]?.done);
-  if(!next)return `<div style="background:var(--card);border-radius:16px;padding:24px;text-align:center;border:1px solid var(--ng)">
-    <div style="font-size:40px;margin-bottom:8px">🎉</div>
-    <div class="gf" style="font-size:16px;color:var(--ng)">TODAS AS MISSÕES COMPLETAS!</div>
-    <p style="font-size:13px;color:var(--text2);margin-top:6px">Você é demais, Ian! A Fórmula Ian é seu troféu.</p></div>`;
-  const locked = next.w===2 && !state.progress.d6?.done;
-  return `
-  <div style="background:var(--card);border-radius:16px;padding:20px;border:1px solid var(--border)">
-    <div style="font-size:10px;font-weight:700;color:var(--ng);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">⚡ PRÓXIMA MISSÃO</div>
-    <div style="display:flex;align-items:center;gap:12px">
-      <div style="width:50px;height:50px;border-radius:14px;background:${next.bg};display:flex;align-items:center;justify-content:center;font-size:28px">${next.emoji}</div>
-      <div style="flex:1">
-        <div style="font-size:15px;font-weight:700">${next.title}</div>
-        <div style="font-size:11px;color:${next.color};font-weight:600">${next.tag}</div>
-      </div>
-    </div>
-    ${locked?`<div style="margin-top:12px;padding:10px 14px;background:#2E1A0A;border-radius:10px;font-size:11px;color:#FF8C00">🔒 Complete a Semana 1 primeiro!</div>`
-    :`<button onclick="openDay('${next.id}')" style="width:100%;margin-top:14px;padding:14px;border-radius:12px;background:linear-gradient(135deg,var(--ng),var(--nb));color:#000;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;box-shadow:0 4px 20px rgba(0,255,135,.3)">⚡ INICIAR MISSÃO</button>`}
-  </div>`;
+function rDayCard(d,i,list,wLock){
+  var p=S.p[d.id]||{};
+  var prev=i===0||S.p[list[i-1].id]&&S.p[list[i-1].id].done;
+  var locked=wLock||(i>0&&!prev&&!p.done);
+  var earned=p.done?(d.refl?120:50+(p.remember||0)*5+(p.enjoyed||0)*5):0;
+  var isBoss=d.tag&&d.tag.indexOf("Boss")>=0;
+
+  var cls="glass dc"+(p.done?" done":"")+(locked?" lk":"");
+  var h='<div class="'+cls+'" onclick="'+(locked?"":"openDay('"+d.id+"')")+'"'+(isBoss?' style="border-color:rgba(255,215,0,.15)"':'')+'>';
+  h+='<div class="dc-icon" style="background:'+d.bg+'">'+(!locked?(p.done?"✅":d.emoji):"🔒")+'</div>';
+  h+='<div class="dc-info"><div class="dc-title">'+d.title+'</div>';
+  h+='<div class="dc-tag" style="color:'+d.color+'">'+d.tag+'</div></div>';
+  if(p.done)h+='<div class="dc-xp"><div class="gf" style="font-size:14px;color:var(--neon)">+'+earned+'</div><div style="font-size:8px;color:var(--text3);font-weight:700">XP</div></div>';
+  else if(!locked)h+='<div style="color:var(--text3);font-size:16px">›</div>';
+  h+='</div>';return h
 }
 
-function renderMissions(){
-  const w1=DAYS.filter(d=>d.w===1), w2=DAYS.filter(d=>d.w===2);
-  const w2locked=!state.progress.d6?.done;
-  return `
-  <div style="padding-top:12px">
-    <div style="text-align:center;margin-bottom:14px">
-      <div style="font-size:8px;color:var(--text3);letter-spacing:3px;margin-bottom:6px">▪️▫️▪️▫️▪️▫️▪️▫️▪️▫️▪️▫️▪️▫️▪️</div>
-      <h2 class="gf" style="font-size:18px;color:var(--nb)">🔍 SEMANA 1 — DESCOBERTA</h2>
-      <div style="font-size:10px;color:var(--text3);margin-top:2px">Teste diferentes estratégias de estudo</div>
-    </div>
-    ${w1.map((d,i)=>renderDayCard(d,i,w1)).join("")}
-    <div style="text-align:center;margin:24px 0 14px">
-      <div style="font-size:8px;color:var(--text3);letter-spacing:3px;margin-bottom:6px">▪️▫️▪️▫️▪️▫️▪️▫️▪️▫️▪️▫️▪️▫️▪️</div>
-      <h2 class="gf" style="font-size:18px;color:var(--np)">🚀 SEMANA 2 — AUTONOMIA</h2>
-      <div style="font-size:10px;color:var(--text3);margin-top:2px">Você no comando dos seus estudos</div>
-    </div>
-    ${w2locked?`<div style="padding:12px 16px;background:#2E1A0A;border:1px solid #5A3000;border-radius:12px;font-size:12px;color:#FF8C00;margin-bottom:12px;text-align:center">🔒 Complete o Dia de Reflexão (D6) para desbloquear!</div>`:""}
-    ${w2.map((d,i)=>renderDayCard(d,i,w2,w2locked)).join("")}
-  </div>`;
-}
+// ——— DETAIL ———
+function rDetail(){
+  var d=null;DAYS.forEach(function(v){if(v.id===S.detail)d=v});
+  if(!d)return"";var p=S.p[d.id]||{};
+  var isBoss=d.tag&&d.tag.indexOf("Boss")>=0;
+  var lvNum=DAYS.indexOf(d)+1;
 
-function renderDayCard(d,i,list,weekLocked){
-  const p=state.progress[d.id]||{};
-  const prevDone=i===0||state.progress[list[i-1]?.id]?.done;
-  const locked=weekLocked||(i>0&&!prevDone&&!p.done);
-  const xpEarned=p.done?(d.refl?100:50+(p.remember||0)*5+(p.enjoyed||0)*5):0;
-  return `
-  <div class="dc${p.done?' done':''}${locked?' locked':''}" onclick="${locked?'':`openDay('${d.id}')`}" style="cursor:${locked?'not-allowed':'pointer'}">
-    <div class="dc-icon" style="background:${d.bg}">
-      ${p.done?'✅':locked?'🔒':d.emoji}
-    </div>
-    <div class="dc-info">
-      <div class="dc-title">${d.title}</div>
-      <div class="dc-tag" style="color:${d.color}">${d.tag}</div>
-    </div>
-    ${p.done?`<div class="dc-xp"><div class="earned">+${xpEarned}</div><div class="label">XP</div></div>`
-    :`<div class="dc-arrow">›</div>`}
-  </div>`;
-}
-
-function renderDetail(){
-  const d=DAYS.find(x=>x.id===state.detail);
-  if(!d)return"";
-  const p=state.progress[d.id]||{};
-
-  if(state.showMom){
-    return `
-    <div class="overlay open" style="display:block;position:relative">
-      <button class="back-btn" onclick="state.showMom=false;render()">← Voltar pra missão</button>
-      <div style="text-align:center;margin-bottom:20px">
-        <div style="font-size:40px;margin-bottom:4px">📱</div>
-        <h2 style="font-size:18px;font-weight:800">Roteiro da Ligação</h2>
-        <p style="font-size:12px;color:var(--text3)">Frases-guia pra conversa com o Ian</p>
-      </div>
-      <div class="mom-card">
-        ${d.mom.map(m=>`<div class="mom-bubble"><div class="who">Você diz:</div><p>"${m}"</p></div>`).join("")}
-      </div>
-      <div style="background:rgba(255,230,0,.06);border:1px solid rgba(255,230,0,.15);border-radius:14px;padding:14px 16px;display:flex;gap:10px">
-        <span style="font-size:16px">💛</span>
-        <div>
-          <p style="font-size:12px;color:var(--ny);font-weight:700;margin-bottom:4px">Lembre-se:</p>
-          <p style="font-size:12px;color:var(--text2);line-height:1.6">Ligação curta (10-15 min) e leve. Se ele não fez, tudo bem — pergunte sobre o dia dele e tenta amanhã.</p>
-        </div>
-      </div>
-    </div>`;
+  if(S.showMom){
+    var h='<div class="ov open" style="display:block;position:relative">';
+    h+='<button class="back" onclick="S.showMom=false;render()">← Voltar</button>';
+    h+='<div style="text-align:center;margin-bottom:16px"><div style="font-size:36px">📱</div>';
+    h+='<div style="font-size:16px;font-weight:800;margin-top:4px">Roteiro da Ligação</div>';
+    h+='<div style="font-size:11px;color:var(--text3)">Frases-guia — Nível '+lvNum+'</div></div>';
+    h+='<div class="glass" style="padding:18px;margin-bottom:12px">';
+    d.mom.forEach(function(m){
+      h+='<div class="mom-bubble"><div class="mom-who">Você diz:</div><p>"'+m+'"</p></div>'
+    });
+    h+='</div>';
+    if(d.tip){h+='<div class="glass" style="padding:14px;display:flex;gap:10px"><span style="font-size:15px">💡</span>';
+      h+='<p style="font-size:11px;color:var(--blue);line-height:1.6">'+d.tip+'</p></div>'}
+    h+='<div class="glass" style="padding:14px;margin-top:10px;display:flex;gap:10px"><span style="font-size:15px">💛</span>';
+    h+='<div><p style="font-size:11px;color:var(--gold);font-weight:700;margin-bottom:3px">Lembre-se:</p>';
+    h+='<p style="font-size:11px;color:var(--text2);line-height:1.6">Ligação curta (10-15 min), tom leve. Se não fez, tudo bem — pergunte sobre o dia.</p></div></div>';
+    h+='</div>';return h
   }
 
-  return `
-  <div class="overlay open" style="display:block;position:relative">
-    <button class="back-btn" onclick="closeDetail()">← Voltar</button>
-    <div class="detail-header" style="background:${d.bg};border:1px solid ${d.color}33">
-      <div class="emoji">${d.emoji}</div>
-      <div class="tag" style="color:${d.color}">${d.tag}</div>
-      <h2>${d.title}</h2>
-    </div>
+  var h='<div class="ov open" style="display:block;position:relative">';
+  h+='<button class="back" onclick="closeDay()">← Voltar</button>';
 
-    <div class="paper-alert">
-      <div class="icon">✏️</div>
-      <p>${d.paper}</p>
-    </div>
+  // Header
+  h+='<div class="mh glass" style="border-left:3px solid '+d.color+'">';
+  h+='<div style="font-size:36px;margin-bottom:4px">'+d.emoji+'</div>';
+  h+='<div class="tag" style="color:'+d.color+'">'+d.tag+'</div>';
+  h+='<h2>'+d.title+'</h2>';
+  h+='<div class="lvl">NÍVEL '+lvNum+' DE 12'+(isBoss?' — ⚠️ BOSS BATTLE':'')+'</div></div>';
 
-    <div class="section-card">
-      <div class="section-label" style="color:${d.color}">🎯 MISSÃO</div>
-      <p>${d.mission}</p>
-    </div>
+  // Paper alert
+  h+='<div class="pa"><span style="font-size:18px">✏️</span><p>'+d.paper+'</p></div>';
 
-    ${d.refl&&d.reflQs?`
-    <div class="section-card">
-      <div class="section-label" style="color:var(--ny)">📝 PERGUNTAS PRO CADERNO</div>
-      ${d.reflQs.map((q,i)=>`<div class="refl-q"><b>${i+1}.</b> ${q}</div>`).join("")}
-    </div>`:""}
+  // Mission briefing
+  h+='<div class="sec glass"><div class="sec-label" style="color:'+d.color+'">🎯 BRIEFING DA MISSÃO</div>';
+  h+='<p style="font-size:13px;color:var(--text2);line-height:1.75">'+d.mission+'</p></div>';
 
-    ${state.momUnlocked?`<button onclick="state.showMom=true;render()" style="width:100%;background:linear-gradient(135deg,#0D2818,#0A1F14);border:1px solid #1A4D2E;border-radius:14px;padding:16px;text-align:left;margin-bottom:12px">
-      <div style="font-size:10px;font-weight:700;color:var(--ng);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">📱 ROTEIRO PRA MÃE</div>
-      <div style="font-size:12px;color:var(--text2)">Toque para ver as frases-guia da ligação</div>
-    </button>`:''}
+  // Reflection questions
+  if(d.refl&&d.rqs){
+    h+='<div class="sec glass"><div class="sec-label" style="color:var(--gold)">📝 DESAFIO DO BOSS</div>';
+    d.rqs.forEach(function(q,i){h+='<div class="rq"><b style="color:var(--gold)">'+(i+1)+'.</b> '+q+'</div>'});
+    h+='</div>'
+  }
 
-    ${d.tip&&state.momUnlocked?`<div class="tip-box"><span class="icon">💡</span><p>${d.tip}</p></div>`:""}
+  // Mom button (hidden unless unlocked)
+  if(S.momOn){
+    h+='<button onclick="S.showMom=true;render()" style="width:100%;background:rgba(0,255,135,.06);border:1px solid rgba(0,255,135,.12);border-radius:12px;padding:14px;text-align:left;margin-bottom:10px">';
+    h+='<div style="font-size:9px;font-weight:700;color:var(--neon);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px">📱 DEBRIEF — ROTEIRO MÃE</div>';
+    h+='<div style="font-size:11px;color:var(--text2)">Frases-guia para a ligação</div></button>'
+  }
 
-    ${!d.refl?`
-    <div class="section-card">
-      <div class="section-label" style="color:var(--ny)">⭐ COMO FOI?</div>
-      <div class="rate-row">
-        <div class="rate-label">Quanto lembrei? (0 = nada, 10 = tudo)</div>
-        <div class="rate-btns">${[...Array(10)].map((_,i)=>`<button class="${(p.remember||0)>=i+1?'on':'off'}" onclick="setRating('${d.id}','remember',${i+1})">${i+1}</button>`).join("")}</div>
-      </div>
-      <div class="rate-row">
-        <div class="rate-label">Quanto gostei? (0 = odiei, 10 = amei)</div>
-        <div class="rate-btns">${[...Array(10)].map((_,i)=>`<button class="${(p.enjoyed||0)>=i+1?'on':'off'}" onclick="setRating('${d.id}','enjoyed',${i+1})">${i+1}</button>`).join("")}</div>
-      </div>
-    </div>`:""}
+  // Rating (0-10 scale)
+  if(!d.refl){
+    h+='<div class="sec glass"><div class="sec-label" style="color:var(--gold)">⭐ AVALIAÇÃO PÓS-MISSÃO</div>';
+    h+='<div class="rate-row"><div class="rate-label">Quanto lembrei? (0 = nada · 10 = tudo)</div><div class="rate-track">';
+    for(var i=0;i<=10;i++){
+      var on=(p.remember!==undefined&&p.remember!==null&&p.remember>=i)?true:false;
+      var gc=on?"background:linear-gradient(135deg,var(--neon),var(--teal))":"";
+      h+='<button class="'+(on?"on":"off")+'" style="'+gc+'" onclick="rate(\''+d.id+'\',\'remember\','+i+')">'+i+'</button>'
+    }
+    h+='</div></div>';
+    h+='<div class="rate-row"><div class="rate-label">Quanto gostei? (0 = nada · 10 = amei)</div><div class="rate-track">';
+    for(var i=0;i<=10;i++){
+      var on=(p.enjoyed!==undefined&&p.enjoyed!==null&&p.enjoyed>=i)?true:false;
+      var gc=on?"background:linear-gradient(135deg,var(--gold),var(--orange))":"";
+      h+='<button class="'+(on?"on":"off")+'" style="'+gc+'" onclick="rate(\''+d.id+'\',\'enjoyed\','+i+')">'+i+'</button>'
+    }
+    h+='</div></div></div>'
+  }
 
-    <button class="done-btn ${p.done?'completed':'pending'}" onclick="toggleDone('${d.id}')">
-      ${p.done?'✅ MISSÃO COMPLETA! (+XP)':'MARCAR COMO FEITA ⚡'}
-    </button>
-  </div>`;
+  // Complete button
+  h+='<button class="btn-main '+(p.done?"btn-done":"btn-green")+'" onclick="toggleDone(\''+d.id+'\')">';
+  h+=(p.done?"✅ MISSÃO COMPLETA":"⚡ MISSÃO CUMPRIDA")+'</button>';
+  h+='</div>';return h
 }
 
-function renderAchs(){
-  return `
-  <div style="padding-top:12px">
-    <div style="text-align:center;margin-bottom:16px">
-      <div style="font-size:8px;color:var(--text3);letter-spacing:3px;margin-bottom:6px">▪️▫️▪️▫️▪️▫️▪️▫️▪️▫️▪️▫️▪️▫️▪️</div>
-      <h2 class="gf" style="font-size:18px;color:var(--ny)">🏆 CONQUISTAS</h2>
-      <p style="font-size:12px;color:var(--text3);margin-top:4px">💎 ${ACHS.filter(a=>a.ck(state.progress)).length}/${ACHS.length} desbloqueadas</p>
-    </div>
-    <div class="ach-grid">
-      ${ACHS.map(a=>{
-        const unlocked=a.ck(state.progress);
-        return `<div class="ach ${unlocked?'unlocked':'locked'}">
-          <div class="icon">${a.icon}</div>
-          <div class="name">${a.name}</div>
-          <div class="desc">${a.desc}</div>
-        </div>`;
-      }).join("")}
-    </div>
-  </div>`;
+// ——— ACHIEVEMENTS ———
+function rAchs(){
+  var unlocked=ACHS.filter(function(a){return a.ck(S.p)}).length;
+  var h='<div style="text-align:center;padding:12px 0 16px">';
+  h+='<div class="gf" style="font-size:14px;color:var(--gold);letter-spacing:1.5px">TROFÉUS</div>';
+  h+='<div style="font-size:10px;color:var(--text3);margin-top:4px">💎 '+unlocked+'/'+ACHS.length+' desbloqueados</div></div>';
+  h+='<div class="ach-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">';
+  ACHS.forEach(function(a){
+    var u=a.ck(S.p);var tc=TIER_COLORS[a.t];
+    h+='<div class="glass ach'+(u?" unlocked":" locked")+'"'+(u?' style="border-color:'+tc+'33"':'')+'>';
+    h+='<div class="ai">'+a.i+'</div>';
+    h+='<div class="an"'+(u?' style="color:'+tc+'"':'')+'>'+a.n+'</div>';
+    h+='<div class="ad">'+a.d+'</div>';
+    h+='<div style="font-size:8px;font-weight:700;color:'+tc+';margin-top:4px;letter-spacing:.5px">'+TIER_NAMES[a.t]+'</div></div>'
+  });
+  h+='</div>';return h
 }
 
-function renderMom(){
-  return `
-  <div style="padding-top:12px">
-    <button onclick="lockMom()" style="width:100%;padding:12px;border-radius:12px;background:var(--card2);
-      color:var(--text2);font-size:13px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;
-      justify-content:center;gap:8px;border:1px solid var(--border)">
-      🔒 Sair do Modo Mãe
-    </button>
-    <div style="text-align:center;margin-bottom:20px">
-      <div style="font-size:40px;margin-bottom:4px">💛</div>
-      <h2 class="gf" style="font-size:18px">GUIA DA MÃE</h2>
-      <p style="font-size:12px;color:var(--text3)">Dicas pra você, mãe guerreira</p>
-    </div>
-    <div class="rules-card">
-      <h3 style="color:var(--ny)">Regra 1: Valide antes de redirecionar</h3>
-      <p>Se ele disser "eu sou burro", não diga "não é não".</p>
-      <p>Diga: <span style="color:var(--ng);font-style:italic">"Eu entendo que você tá sentindo isso. Vamos ver juntos o que tá acontecendo?"</span></p>
-    </div>
-    <div class="rules-card">
-      <h3 style="color:var(--ny)">Regra 2: Elogie o processo, nunca o talento</h3>
-      <p>Em vez de "você é inteligente":</p>
-      <p style="color:var(--ng);font-style:italic">"Gostei que você tentou de um jeito diferente"</p>
-      <p style="color:var(--ng);font-style:italic">"Você dedicou um tempão, dá pra ver o esforço"</p>
-    </div>
-    <div class="rules-card">
-      <h3 style="color:var(--ny)">Regra 3: Normalize a dificuldade</h3>
-      <p>Conte pra ele momentos em que VOCÊ precisou de mais tempo ou esforço que outras pessoas — e como isso não te definiu.</p>
-    </div>
-    <div class="rules-card">
-      <h3 style="color:var(--nb)">📱 Sobre a ligação</h3>
-      <p>10-15 minutos, tom leve e curioso. Não é cobrança. Se ele não fez a atividade, tudo bem — pergunte sobre o dia e tenta amanhã.</p>
-      <p>Abra cada missão pra ver o roteiro específico da ligação.</p>
-    </div>
-    <div class="rules-card">
-      <h3 style="color:var(--np)">👩‍🏫 Sobre quem estuda com ele</h3>
-      <p>Compartilhe este app com a pessoa que estuda com o Ian no período de provas. Se ela reforçar a mesma linguagem de processo (em vez de "vamos tirar nota boa"), o efeito multiplica.</p>
-    </div>
-    <div class="rules-card" style="border-color:var(--ng)33">
-      <h3 style="color:var(--ng)">🔄 Resetar progresso</h3>
-      <p>Se quiser recomeçar do zero:</p>
-      <button onclick="if(confirm('Tem certeza? Vai apagar todo o progresso.')){state.progress={};save();render();}" style="margin-top:8px;padding:10px 20px;border-radius:10px;background:var(--card2);color:var(--nr);font-size:13px;font-weight:700">Resetar Tudo</button>
-    </div>
-  </div>`;
+// ——— MOM ———
+function rMom(){
+  var h='<button onclick="lockMom()" style="width:100%;padding:10px;border-radius:10px;background:var(--surface2);color:var(--text2);font-size:12px;font-weight:700;margin-bottom:14px;border:1px solid var(--border)">🔒 Sair do Modo Mãe</button>';
+  h+='<div style="text-align:center;margin-bottom:16px"><div style="font-size:36px">💛</div>';
+  h+='<div class="gf" style="font-size:14px;margin-top:4px;letter-spacing:1px;color:var(--gold)">GUIA DA MÃE</div></div>';
+
+  var rules=[
+    {t:"Regra 1: Valide antes de redirecionar",b:'Se ele disser "eu sou burro", não diga "não é não". Diga: <em style="color:var(--neon)">"Eu entendo que você tá sentindo isso. Vamos ver juntos?"</em>'},
+    {t:"Regra 2: Elogie o processo",b:'Em vez de "você é inteligente": <em style="color:var(--neon)">"Gostei que tentou de um jeito diferente"</em> ou <em style="color:var(--neon)">"Dá pra ver o esforço"</em>'},
+    {t:"Regra 3: Normalize a dificuldade",b:"Conte momentos em que VOCÊ precisou de mais tempo que outras pessoas — e como isso não te definiu."},
+    {t:"Sobre a ligação",b:"10-15 min, tom leve e curioso. Não é cobrança. Se não fez, pergunte sobre o dia e tenta amanhã."},
+    {t:"Sobre quem estuda com ele",b:"Compartilhe este app com a pessoa que estuda com o Ian. Se reforçar a mesma linguagem de processo, o efeito multiplica."},
+  ];
+  rules.forEach(function(r){
+    h+='<div class="glass" style="padding:18px;margin-bottom:8px"><h3 style="font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px">'+r.t+'</h3>';
+    h+='<p style="font-size:12px;color:var(--text2);line-height:1.7">'+r.b+'</p></div>'
+  });
+
+  h+='<div class="glass" style="padding:18px;margin-bottom:8px;border-color:rgba(255,77,106,.2)"><h3 style="font-size:14px;font-weight:700;color:var(--red);margin-bottom:8px">🔄 Resetar progresso</h3>';
+  h+='<p style="font-size:12px;color:var(--text2);margin-bottom:10px">Apaga todo o progresso do Ian.</p>';
+  h+='<button onclick="if(confirm(\'Tem certeza? Apaga tudo.\')){S.p={};save();render()}" style="padding:8px 16px;border-radius:8px;background:rgba(255,77,106,.1);color:var(--red);font-size:12px;font-weight:700;border:1px solid rgba(255,77,106,.2)">Resetar</button></div>';
+  return h
 }
 
 // ——— ACTIONS ———
-function setTab(t){state.tab=t;render();window.scrollTo(0,0);}
-function lockMom(){state.momUnlocked=false;state.tab="home";render();window.scrollTo(0,0);}
-function openDay(id){state.detail=id;state.showMom=false;render();window.scrollTo(0,0);}
-function closeDetail(){state.detail=null;state.showMom=false;render();}
-
-function setRating(id,field,val){
-  if(!state.progress[id])state.progress[id]={};
-  state.progress[id][field]=val;
-  save();render();
-}
-
-function toggleDone(id){
-  if(!state.progress[id])state.progress[id]={};
-  state.progress[id].done=!state.progress[id].done;
-  save();render();
-}
+function go(t){S.tab=t;render();window.scrollTo(0,0)}
+function lockMom(){S.momOn=false;S.tab="home";render();window.scrollTo(0,0)}
+function openDay(id){S.detail=id;S.showMom=false;render();window.scrollTo(0,0)}
+function closeDay(){S.detail=null;S.showMom=false;render()}
+function rate(id,f,v){if(!S.p[id])S.p[id]={};S.p[id][f]=v;save();render()}
+function toggleDone(id){if(!S.p[id])S.p[id]={};S.p[id].done=!S.p[id].done;save();render()}
 
 // ——— INIT ———
-function init(){
-  try{
-    load();
-    render();
-  }catch(e){
-    document.getElementById("app").innerHTML=
-      '<div style="text-align:center;padding:30vh 20px 0;color:#E8E8F0;font-family:sans-serif">'+
-      '<div style="font-size:48px;margin-bottom:12px">⚠️</div>'+
-      '<div style="font-size:14px;color:#FF4D6A">Erro ao carregar: '+e.message+'</div>'+
-      '<button onclick="location.reload()" style="margin-top:16px;padding:12px 24px;border-radius:12px;'+
-      'background:#00FF87;color:#000;font-weight:700;border:none;font-size:14px">Tentar de novo</button></div>';
-  }
-}
-if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+function init(){try{load();render()}catch(e){
+  document.getElementById("app").innerHTML='<div style="text-align:center;padding:30vh 20px;color:var(--text)">'+
+  '<p style="color:var(--red)">Erro: '+e.message+'</p>'+
+  '<button onclick="location.reload()" style="margin-top:12px;padding:10px 20px;border-radius:10px;background:var(--neon);color:#000;font-weight:700;border:none">Recarregar</button></div>'
+}}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 </script>
 </body>
 </html>
