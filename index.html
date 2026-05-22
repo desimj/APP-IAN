@@ -25,7 +25,8 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);
   min-height:100vh;min-height:100dvh;overflow-x:hidden;
-  background-image:url('bg-game.png');background-size:300px 300px;background-repeat:repeat}
+  background-image:linear-gradient(rgba(10,10,24,.55),rgba(10,10,24,.55)),url('bg-game.png');
+  background-size:cover;background-position:center;background-attachment:fixed}
 button{font-family:inherit;cursor:pointer;border:none;outline:none}
 .gf{font-family:'Orbitron',monospace}
 ::-webkit-scrollbar{display:none}
@@ -55,7 +56,8 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none}
 /* ——— OVERLAY ——— */
 .ov{position:fixed;inset:0;background:var(--bg);z-index:200;overflow-y:auto;
   padding:16px 16px 40px;display:none;
-  background-image:url('bg-game.png');background-size:300px 300px}
+  background-image:linear-gradient(rgba(10,10,24,.55),rgba(10,10,24,.55)),url('bg-game.png');
+  background-size:cover;background-position:center;background-attachment:fixed}
 .ov.open{display:block}
 .ov>*{max-width:520px;margin-left:auto;margin-right:auto}
 
