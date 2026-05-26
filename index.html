@@ -21,6 +21,7 @@
   --orange:#FF8C00;--pink:#FF6BCB;--teal:#14F0C0;
   --text:#F0F0FF;--text2:#A0A0C0;--text3:#5A5A78;
   --glow-green:0 0 20px rgba(0,255,135,.15);--glow-blue:0 0 20px rgba(0,212,255,.15);
+  --sci:#00BFFF;--sci-bg:rgba(0,191,255,.08);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);
@@ -30,14 +31,10 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 button{font-family:inherit;cursor:pointer;border:none;outline:none}
 .gf{font-family:'Orbitron',monospace}
 ::-webkit-scrollbar{display:none}
-
-/* ——— GLASS CARDS ——— */
 .glass{background:var(--surface);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   border:1px solid var(--border);border-radius:16px}
 .glass2{background:var(--surface2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   border:1px solid var(--border);border-radius:14px}
-
-/* ——— NAV ——— */
 .nav{position:fixed;bottom:0;left:0;right:0;z-index:100;
   background:rgba(8,8,20,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   border-top:1px solid var(--border);display:flex;
@@ -48,31 +45,22 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none}
 .nav button.act{color:var(--neon)}
 .nav button .ni{font-size:18px;height:22px;transition:.2s}
 .nav button.act .ni{transform:scale(1.15);filter:drop-shadow(0 0 6px rgba(0,255,135,.4))}
-
-/* ——— PAGES ——— */
 .pg{display:none;padding:16px 16px 88px;max-width:520px;margin:0 auto}
 .pg.act{display:block}
-
-/* ——— OVERLAY ——— */
 .ov{position:fixed;inset:0;background:var(--bg);z-index:200;overflow-y:auto;
   padding:16px 16px 40px;display:none;
   background-image:linear-gradient(rgba(10,10,24,.55),rgba(10,10,24,.55)),url('bg-game.png');
   background-size:cover;background-position:center;background-attachment:fixed}
 .ov.open{display:block}
 .ov>*{max-width:520px;margin-left:auto;margin-right:auto}
-
-/* ——— COMPONENTS ——— */
-.back{background:var(--surface);color:var(--text2);padding:8px 16px;border-radius:10px;
-  font-size:12px;font-weight:600;margin-bottom:16px;display:inline-flex;align-items:center;gap:6px;
-  border:1px solid var(--border)}
-
+.back{background:var(--surface2);color:var(--text);padding:10px 18px;border-radius:12px;
+  font-size:13px;font-weight:700;margin-bottom:16px;display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--border);letter-spacing:.3px}
 .xp-track{background:rgba(255,255,255,.06);border-radius:20px;height:8px;overflow:hidden;position:relative}
 .xp-fill{height:100%;border-radius:20px;transition:width .8s cubic-bezier(.25,.8,.25,1);
   background:linear-gradient(90deg,var(--neon),var(--blue));position:relative}
 .xp-fill::after{content:'';position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(255,255,255,.25) 0%,transparent 60%);border-radius:20px}
-
-/* rating */
 .rate-row{margin-bottom:14px}
 .rate-label{font-size:10px;font-weight:700;color:var(--text3);margin-bottom:8px;
   text-transform:uppercase;letter-spacing:.4px}
@@ -80,8 +68,6 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none}
 .rate-track button{flex:1;height:32px;border-radius:6px;font-size:11px;font-weight:700;transition:.15s}
 .rate-track button.off{background:rgba(255,255,255,.04);color:var(--text3)}
 .rate-track button.on{color:#000}
-
-/* day card */
 .dc{padding:14px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px;
   transition:all .15s;position:relative;overflow:hidden;cursor:pointer}
 .dc.done{border-color:rgba(0,255,135,.2)}
@@ -93,44 +79,30 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none}
 .dc-title{font-size:13px;font-weight:700;margin-bottom:1px}
 .dc-tag{font-size:10px;font-weight:600}
 .dc-xp{text-align:right;flex-shrink:0}
-
-/* mission header */
 .mh{border-radius:18px;padding:28px 22px;margin-bottom:14px;position:relative;overflow:hidden}
 .mh .tag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
 .mh h2{font-size:20px;font-weight:800}
 .mh .lvl{font-size:9px;font-weight:700;color:rgba(255,255,255,.5);margin-top:4px;
   text-transform:uppercase;letter-spacing:.6px}
-
-/* paper alert */
 .pa{background:rgba(255,200,0,.08);border:1px solid rgba(255,200,0,.2);border-radius:12px;
   padding:12px 14px;margin-bottom:12px;display:flex;gap:10px;align-items:flex-start}
 .pa p{font-size:12px;color:var(--gold);line-height:1.6;font-weight:600}
-
-/* section */
 .sec{padding:18px;margin-bottom:10px}
 .sec-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px;
   display:flex;align-items:center;gap:6px}
-
-/* achievement */
 .ach{text-align:center;padding:16px 10px;transition:.2s}
 .ach.locked{opacity:.3}
 .ach.unlocked{border-color:rgba(0,255,135,.25);box-shadow:var(--glow-green)}
 .ach .ai{font-size:28px;margin-bottom:5px}
 .ach .an{font-size:10px;font-weight:700;margin-bottom:2px}
 .ach .ad{font-size:9px;color:var(--text3)}
-
-/* mom */
 .mom-bubble{background:rgba(0,255,135,.06);border:1px solid rgba(0,255,135,.12);
   border-radius:12px;border-bottom-left-radius:3px;padding:12px 14px;margin-bottom:8px}
 .mom-bubble p{font-size:13px;font-style:italic;line-height:1.6}
 .mom-who{font-size:8px;font-weight:700;color:var(--neon);text-transform:uppercase;
   letter-spacing:.5px;margin-bottom:3px}
-
-/* reflection */
 .rq{background:rgba(255,255,255,.03);border-radius:10px;padding:10px 14px;margin-bottom:5px;
   font-size:12.5px;line-height:1.6}
-
-/* btn */
 .btn-main{width:100%;padding:16px;border-radius:14px;font-size:14px;font-weight:800;
   color:#000;text-transform:uppercase;letter-spacing:.8px;transition:.2s;
   position:relative;overflow:hidden;font-family:'Orbitron',monospace}
@@ -147,48 +119,42 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none}
 .btn-done{
   background:linear-gradient(180deg,#44FFBB 0%,var(--neon) 40%,#00DD77 100%);
   box-shadow:0 0 24px rgba(0,255,135,.3),0 4px 0 #009950,inset 0 1px 0 rgba(255,255,255,.25);
-  animation:glow-btn 2s infinite;
-  text-shadow:0 1px 0 rgba(255,255,255,.3)}
+  animation:glow-btn 2s infinite;text-shadow:0 1px 0 rgba(255,255,255,.3)}
 @keyframes glow-btn{0%,100%{box-shadow:0 0 16px rgba(0,255,135,.2),0 4px 0 #009950}
   50%{box-shadow:0 0 30px rgba(0,255,135,.4),0 4px 0 #009950}}
-
-/* stats */
 .stat-card{padding:14px;text-align:center}
 .stat-num{font-family:'Orbitron',monospace;font-size:24px;font-weight:900}
 .stat-label{font-size:9px;font-weight:700;color:var(--text3);margin-top:2px;
   text-transform:uppercase;letter-spacing:.4px}
+/* mission sub-tabs */
+.mtabs{display:flex;gap:6px;margin-bottom:16px;padding:4px;background:rgba(255,255,255,.03);border-radius:12px}
+.mtab{flex:1;padding:10px 8px;border-radius:10px;background:none;color:var(--text3);
+  font-size:12px;font-weight:700;text-align:center;transition:.15s;letter-spacing:.3px}
+.mtab.act{background:var(--surface2);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.mtab .mtab-badge{display:inline-block;font-size:9px;padding:1px 6px;border-radius:6px;
+  margin-left:4px;font-weight:800;vertical-align:middle}
 
-/* responsive */
+/* science chapter accent */
+.sci-accent{border-color:rgba(0,191,255,.2)!important}
+.sci-accent.done::after{background:var(--sci)!important}
+/* checklist inside missions */
+.ck-item{background:rgba(255,255,255,.03);border-radius:8px;padding:9px 12px;margin-bottom:4px;
+  font-size:12px;color:var(--text2);line-height:1.6;display:flex;gap:8px;align-items:flex-start}
+.ck-item b{color:var(--sci);flex-shrink:0}
 @media(max-width:374px){
-  .pg{padding:12px 10px 88px}
-  .rate-track button{height:28px;font-size:10px}
-  .dc{padding:12px;gap:10px}
-  .dc-icon{width:38px;height:38px;font-size:18px}
-  .dc-title{font-size:12px}
-  .mh{padding:22px 18px}
-  .mh h2{font-size:18px}
-}
+  .pg{padding:12px 10px 88px}.rate-track button{height:28px;font-size:10px}
+  .dc{padding:12px;gap:10px}.dc-icon{width:38px;height:38px;font-size:18px}
+  .dc-title{font-size:12px}.mh{padding:22px 18px}.mh h2{font-size:18px}}
 @media(min-width:600px){
-  .pg{max-width:580px;padding:20px 24px 92px}
-  .ov{padding:24px}
-  .dc{padding:16px 20px;gap:16px}
-  .dc-icon{width:52px;height:52px;font-size:26px;border-radius:14px}
-  .dc-title{font-size:15px}
-  .mh{padding:32px 28px}
-  .mh h2{font-size:24px}
-  .rate-track button{height:36px;font-size:12px;border-radius:8px}
-  .sec{padding:22px}
-  .ach-grid{grid-template-columns:repeat(3,1fr)}
-}
-@media(min-width:900px){
-  .pg{max-width:680px}
-  .ov>*{max-width:680px}
-  .ach-grid{grid-template-columns:repeat(4,1fr)}
-}
+  .pg{max-width:580px;padding:20px 24px 92px}.ov{padding:24px}
+  .dc{padding:16px 20px;gap:16px}.dc-icon{width:52px;height:52px;font-size:26px;border-radius:14px}
+  .dc-title{font-size:15px}.mh{padding:32px 28px}.mh h2{font-size:24px}
+  .rate-track button{height:36px;font-size:12px;border-radius:8px}.sec{padding:22px}
+  .ach-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.pg{max-width:680px}.ov>*{max-width:680px}.ach-grid{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 <body>
-
 <div id="app" style="position:relative;z-index:1">
   <div style="text-align:center;padding:38vh 20px 0">
     <div style="font-size:44px;margin-bottom:8px">⚡</div>
@@ -196,35 +162,29 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none}
     <div style="font-size:11px;color:var(--text3);margin-top:6px">Iniciando sistemas...</div>
   </div>
 </div>
-
 <nav class="nav" id="main-nav">
   <button id="nav-home" class="act" onclick="go('home')"><span class="ni">🏠</span>BASE</button>
   <button id="nav-missions" onclick="go('missions')"><span class="ni">⚔️</span>MISSÕES</button>
   <button id="nav-achs" onclick="go('achs')"><span class="ni">🏆</span>TROFÉUS</button>
   <button id="nav-mom" onclick="go('mom')" style="display:none"><span class="ni">💛</span>MÃE</button>
 </nav>
-
 <noscript><div style="text-align:center;padding:30vh 20px;color:var(--text)">
-  <p style="font-size:14px">Abra este arquivo no <b>Safari</b> ou <b>Chrome</b>.</p>
-  <p style="font-size:12px;color:var(--text3);margin-top:8px">Toque em Compartilhar (⬆️) → "Abrir no Safari"</p>
-</div></noscript>
-
+  <p style="font-size:14px">Abra no <b>Safari</b> ou <b>Chrome</b>.</p></div></noscript>
 <script>
 // ═══════════════════════════════════════
-//  GAME ENGINE — PROJETO IAN
-//  Serious Games Design Framework
+//  GAME ENGINE — PROJETO IAN v4
+//  + Capítulo 3: Recuperação Ciências
 // ═══════════════════════════════════════
 
-// ——— PROGRESSION SYSTEM ———
 var LEVELS=[
   {name:"Recruta",min:0,color:"#6B7280",icon:"🔰",tier:"BRONZE"},
   {name:"Explorador",min:200,color:"#00D4FF",icon:"🧭",tier:"PRATA"},
   {name:"Guerreiro",min:500,color:"#A78BFA",icon:"⚔️",tier:"OURO"},
   {name:"Campeão",min:900,color:"#FFD700",icon:"🛡️",tier:"DIAMANTE"},
-  {name:"Lenda",min:1300,color:"#FF4D6A",icon:"👑",tier:"LENDÁRIO"},
+  {name:"Lenda",min:1500,color:"#FF4D6A",icon:"👑",tier:"LENDÁRIO"},
 ];
 
-// ——— ACHIEVEMENT SYSTEM ———
+// ——— ACHIEVEMENTS ———
 var ACHS=[
   {id:"first",i:"⚡",n:"Primeiro Passo",d:"Complete sua 1ª missão",t:"common",
    ck:function(p){return vals(p).some(function(d){return d&&d.done})}},
@@ -244,109 +204,210 @@ var ACHS=[
    ck:function(p){return ["d7","d8","d9","d10","d11","d12"].every(function(k){return p[k]&&p[k].done})}},
   {id:"formula",i:"👑",n:"Fórmula Ian",d:"Crie seu método de estudo",t:"legendary",
    ck:function(p){return p.d12&&p.d12.done}},
-  {id:"all",i:"💎",n:"Perfeição Total",d:"Complete TODAS as missões",t:"legendary",
+  {id:"all",i:"💎",n:"Perfeição Total",d:"Complete TODAS as missões originais",t:"legendary",
    ck:function(p){return DAYS.every(function(d){return p[d.id]&&p[d.id].done})}},
+  // — Science achievements —
+  {id:"sci1",i:"🔬",n:"Cientista Iniciante",d:"Complete a 1ª missão de Ciências",t:"common",
+   ck:function(p){return SCIDAYS.some(function(d){return p[d.id]&&p[d.id].done})}},
+  {id:"sci-teoria",i:"📚",n:"Teoria Dominada",d:"Complete toda a teoria de Ciências",t:"rare",
+   ck:function(p){return ["s1","s2","s3","s4","s5"].every(function(k){return p[k]&&p[k].done})}},
+  {id:"sci-exerc",i:"✍️",n:"Exercícios Zerados",d:"Complete todos os exercícios",t:"epic",
+   ck:function(p){return ["s6","s7","s8","s9"].every(function(k){return p[k]&&p[k].done})}},
+  {id:"sci-sim",i:"📝",n:"Simulado Completo",d:"Faça o simulado inteiro",t:"epic",
+   ck:function(p){return p.s10&&p.s10.done}},
+  {id:"sci-all",i:"🌍",n:"Mestre do Planeta",d:"Complete TUDO de Ciências",t:"legendary",
+   ck:function(p){return SCIDAYS.every(function(d){return p[d.id]&&p[d.id].done})}},
 ];
 var TIER_COLORS={common:"#9CA3AF",rare:"#00D4FF",epic:"#A78BFA",legendary:"#FFD700"};
 var TIER_NAMES={common:"COMUM",rare:"RARO",epic:"ÉPICO",legendary:"LENDÁRIO"};
 function vals(o){return Object.keys(o).map(function(k){return o[k]})}
 
-// ——— MISSION DATA ———
+// ——— ORIGINAL MISSIONS (Chapters 1 & 2) ———
 var DAYS=[
   {id:"d1",w:1,emoji:"📝",title:"O Resumo Escrito",tag:"Leitura + Escrita",
    color:"#00D4FF",bg:"rgba(0,212,255,.08)",
-   mission:"Escolha uma matéria. Leia o conteúdo por 10 minutos. Depois FECHA TUDO e escreve no caderno, com suas palavras, o que lembrou. Não precisa ser perfeito — é o que ficou na cabeça.",
-   paper:"Pegue seu caderno e caneta. O resumo é escrito À MÃO — nada de digitar!",
-   mom:["Ian, lê pra mim o resumo que você escreveu? Quero ouvir!","De 0 a 10, quanto foi fácil lembrar? E quanto gostou de fazer assim?"],
-   tip:"O cérebro processa informação diferente quando escreve à mão. Escrever força a reorganizar o conteúdo."},
+   mission:"Escolha uma matéria. Leia o conteúdo por 10 minutos. Depois FECHA TUDO e escreve no caderno, com suas palavras, o que lembrou.",
+   paper:"Pegue seu caderno e caneta. O resumo é escrito À MÃO!",
+   mom:["Ian, lê pra mim o resumo que você escreveu?","De 0 a 10, quanto foi fácil lembrar?"],
+   tip:"O cérebro processa informação diferente quando escreve à mão."},
   {id:"d2",w:1,emoji:"🎤",title:"O Professor Ian",tag:"Explicação Verbal",
    color:"#A78BFA",bg:"rgba(167,139,250,.08)",
    mission:"Estude um conteúdo por 10 minutos. Depois grave um áudio de 2-3 min explicando como se fosse o professor. Manda o áudio pra mãe!",
-   paper:"Faça um ROTEIRO no caderno antes de gravar — liste os 3-5 pontos na ordem certa.",
-   mom:["Ouvi seu áudio! Você explicou [cite algo]. Foi fácil organizar na cabeça?","De 0 a 10, quanto lembrou e quanto gostou?"],
-   tip:"Autoexplicação é das técnicas mais eficazes. Inverte o papel: de quem 'não sabe' pra quem ensina!"},
+   paper:"Faça um ROTEIRO no caderno antes de gravar.",
+   mom:["Ouvi seu áudio! Foi fácil organizar na cabeça?","De 0 a 10, quanto lembrou e quanto gostou?"],
+   tip:"Autoexplicação é das técnicas mais eficazes."},
   {id:"d3",w:1,emoji:"🎨",title:"O Mapa Visual",tag:"Visual + Espacial",
    color:"#14F0C0",bg:"rgba(20,240,192,.08)",
    mission:"Folha EM BRANCO: desenhe um mapa mental. Tema no centro, ramificações com subtemas. Use cores, setas, desenhos. Tire foto e manda pra mãe!",
    paper:"Folha branca + canetas coloridas. Quanto mais visual, melhor!",
-   mom:["Vi seu mapa! Me explica como organizou — por que esse galho saiu daqui?","De 0 a 10, quanto lembrou e quanto gostou?"],
-   tip:"Mapa mental obriga o cérebro a criar hierarquia e conexões entre conceitos."},
+   mom:["Vi seu mapa! Me explica como organizou?","De 0 a 10, quanto lembrou e quanto gostou?"],
+   tip:"Mapa mental obriga o cérebro a criar hierarquia e conexões."},
   {id:"d4",w:1,emoji:"🧠",title:"O Quiz",tag:"Recuperação Ativa",
    color:"#FF8C00",bg:"rgba(255,140,0,.08)",
    mission:"Estude 10 minutos. FECHA TUDO. Escreve 5 perguntas no caderno como se fosse o professor. Responda sem olhar. Depois confere!",
-   paper:"Perguntas E respostas no caderno. Marque ✓ ou ✗ depois de conferir.",
-   mom:["Me faz uma das perguntas — quero ver se EU sei! 😄","De 0 a 10, quanto lembrou e quanto gostou?"],
-   tip:"Recuperação ativa é a estratégia com MAIS evidência científica. O cérebro aprende mais tentando lembrar do que relendo."},
+   paper:"Perguntas E respostas no caderno. Marque ✓ ou ✗ depois.",
+   mom:["Me faz uma das perguntas — quero ver se EU sei! 😄","De 0 a 10?"],
+   tip:"Recuperação ativa é a estratégia com MAIS evidência científica."},
   {id:"d5",w:1,emoji:"📺",title:"Vídeo + Anotação",tag:"Audiovisual + Escrita",
    color:"#00D4FF",bg:"rgba(0,212,255,.08)",
-   mission:"YouTube: vídeo curto (5-10 min) sobre o conteúdo. ENQUANTO assiste, anote no caderno as 3 coisas mais importantes. Depois escreva o que aprendeu de novo. Canais: Descomplica, Me Salva!, Manual do Mundo.",
-   paper:"Assista no tablet mas anotações NO CADERNO. Uma mão no play, outra na caneta.",
-   mom:["O que anotou de novo? O vídeo explicou diferente do professor?","Vídeo funciona melhor ANTES ou DEPOIS de ler a matéria?"],
-   tip:"Observe se ele retém mais com vídeo. A pergunta 'antes ou depois' estimula pensar sobre o PROCESSO."},
+   mission:"YouTube: vídeo curto (5-10 min) sobre o conteúdo. ENQUANTO assiste, anote no caderno as 3 coisas mais importantes.",
+   paper:"Assista no tablet mas anotações NO CADERNO.",
+   mom:["O que anotou de novo? Vídeo funciona melhor ANTES ou DEPOIS de ler a matéria?"],
+   tip:"Observe se ele retém mais com vídeo."},
   {id:"d6",w:1,emoji:"🪞",title:"Dia de Reflexão",tag:"Boss — Autoconhecimento",
    color:"#FFD700",bg:"rgba(255,215,0,.08)",refl:true,
-   mission:"BOSS LEVEL! Responda estas perguntas no caderno com calma — não existe resposta certa.",
-   paper:"Escreva no caderno. Esse registro é importante — você vai rever na Semana 2.",
-   rqs:["Qual jeito de estudar eu mais GOSTEI essa semana?","Com qual eu LEMBREI mais do conteúdo?","Qual eu NÃO gostei e por quê?","Se eu pudesse misturar dois jeitos, quais seriam?","Uma coisa que descobri sobre mim essa semana:"],
-   mom:["Filho, essa semana não foi sobre nota — foi sobre você se conhecer. Agora você sabe como VOCÊ aprende. Isso é um superpoder.","Qual combinação quer usar na semana que vem?"],
+   mission:"BOSS LEVEL! Responda estas perguntas no caderno com calma.",
+   paper:"Escreva no caderno. Esse registro é importante!",
+   rqs:["Qual jeito de estudar eu mais GOSTEI essa semana?","Com qual eu LEMBREI mais?","Qual eu NÃO gostei e por quê?","Se eu pudesse misturar dois jeitos, quais seriam?","Uma coisa que descobri sobre mim:"],
+   mom:["Filho, essa semana foi sobre você se conhecer. Isso é um superpoder.","Qual combinação quer usar na semana que vem?"],
    tip:"Conversa mais importante. É aqui que ele sai de 'eu sou ruim' pra 'eu sei como funciono'."},
   {id:"d7",w:2,emoji:"📋",title:"Meu Plano de Estudo",tag:"Planejamento",
    color:"#00FF87",bg:"rgba(0,255,135,.08)",
-   mission:"Olhe provas e tarefas da semana. No caderno, monte SEU plano: o que estudar, quanto tempo, qual método (dos que testou). Tire foto e manda pra mãe!",
-   paper:"Página inteira. Tabela: Dia | Matéria | Método | Tempo | Feito?",
-   mom:["Vi seu plano! Gostei que escolheu [método] pra [matéria]. Como decidiu?","Tá realista o tempo? 20 min focado > 1 hora distraído."],
-   tip:"Primeira vez que ELE planeja. Não corrija a menos que irreal. Errar e ajustar É autonomia."},
+   mission:"Monte SEU plano: o que estudar, quanto tempo, qual método. Tire foto e manda pra mãe!",
+   paper:"Tabela: Dia | Matéria | Método | Tempo | Feito?",
+   mom:["Vi seu plano! Como decidiu os métodos?","Tá realista o tempo?"],
+   tip:"Primeira vez que ELE planeja. Não corrija a menos que irreal."},
   {id:"d8",w:2,emoji:"⏱️",title:"Missão Pomodoro",tag:"Gestão de Tempo",
    color:"#FF4D6A",bg:"rgba(255,77,106,.08)",
-   mission:"Técnica Pomodoro: 25 min focado (celular virado!), 5 min descanso. Faça 2 ciclos. Anote no caderno o que rendeu em cada bloco.",
-   paper:"No caderno: Pomodoro 1 — o que estudei, o que rendi. Pomodoro 2 — idem.",
-   mom:["Como foi estudar com timer? Rendeu mais?","O que fez no descanso?"],
-   tip:"Pomodoro funciona pra quem sente que 'estuda muito e não rende'. Foco de qualidade > horas."},
+   mission:"Técnica Pomodoro: 25 min focado, 5 min descanso. Faça 2 ciclos. Anote o que rendeu.",
+   paper:"No caderno: Pomodoro 1 — o que estudei. Pomodoro 2 — idem.",
+   mom:["Como foi estudar com timer? Rendeu mais?"],
+   tip:"Foco de qualidade > horas."},
   {id:"d9",w:2,emoji:"🔄",title:"Estudo Espaçado",tag:"Memória de Longo Prazo",
    color:"#A78BFA",bg:"rgba(167,139,250,.08)",
-   mission:"Releia o resumo/mapa da Semana 1. SEM OLHAR, escreva o que ainda lembra. Compare. Circule com caneta colorida o que esqueceu — esses são seus pontos de revisão!",
-   paper:"Caneta de cor diferente pro que esqueceu. Vira seu guia de revisão!",
-   mom:["Quanto ainda lembrava da semana passada?","Os pontos que esqueceu — como vai revisar?"],
-   tip:"Maioria estuda na véspera e esquece em 3 dias. Intervalo consolida memória de longo prazo."},
+   mission:"Releia resumo da Semana 1. SEM OLHAR, escreva o que lembra. Circule com caneta colorida o que esqueceu!",
+   paper:"Caneta de cor diferente pro que esqueceu.",
+   mom:["Quanto ainda lembrava?","Os pontos que esqueceu — como vai revisar?"],
+   tip:"Intervalo consolida memória de longo prazo."},
   {id:"d10",w:2,emoji:"🤔",title:"Dificuldade Produtiva",tag:"Boss — Resiliência",
    color:"#14F0C0",bg:"rgba(20,240,192,.08)",
-   mission:"BOSS LEVEL! Matéria MAIS DIFÍCIL. Tente 3 exercícios SOZINHO antes de pedir ajuda. No caderno: o que tentei, onde travei, como resolvi (ou não). NÃO apague erros!",
-   paper:"Caderno = diário de tentativas. Erros ficam! São o aprendizado.",
-   mom:["Onde travou? O que seu cérebro tentou?","Travar e insistir é quando o cérebro MAIS cresce. Neurociência prova!"],
-   tip:"'Dificuldade desejável' é central na ciência da aprendizagem. Fácil demais = cérebro não muda."},
+   mission:"BOSS! Matéria MAIS DIFÍCIL. Tente 3 exercícios SOZINHO. Anote onde travou. NÃO apague erros!",
+   paper:"Caderno = diário de tentativas. Erros ficam!",
+   mom:["Onde travou? O que seu cérebro tentou?","Travar e insistir é quando o cérebro MAIS cresce!"],
+   tip:"'Dificuldade desejável' é central na ciência da aprendizagem."},
   {id:"d11",w:2,emoji:"📊",title:"Eu, Monitor",tag:"Auto-avaliação",
    color:"#FF8C00",bg:"rgba(255,140,0,.08)",
-   mission:"ANTES de estudar: 'Sobre esse assunto, eu sei ___% e não sei ___%.' DEPOIS de estudar: atualize. A diferença é a prova do seu progresso!",
-   paper:"Antes E depois no caderno. A diferença mostra que seu cérebro evoluiu!",
-   mom:["Quanto mudou o percentual? Como se sentiu?","Usaria essa técnica sozinho?"],
-   tip:"Metacognição diferencia estudantes eficientes. Calibrar conhecimento reduz dependência de validação externa."},
+   mission:"ANTES: 'Sobre isso, eu sei ___% e não sei ___%.' DEPOIS: atualize. A diferença é seu progresso!",
+   paper:"Antes E depois no caderno.",
+   mom:["Quanto mudou o percentual?"],
+   tip:"Metacognição diferencia estudantes eficientes."},
   {id:"d12",w:2,emoji:"🏆",title:"A Fórmula Ian",tag:"Boss Final — Identidade",
    color:"#FFD700",bg:"rgba(255,215,0,.08)",refl:true,
-   mission:"BOSS FINAL! Crie a SUA fórmula de estudo — o Método Ian. Vai ficar colada na parede do seu quarto como troféu!",
+   mission:"BOSS FINAL! Crie a SUA fórmula de estudo — o Método Ian!",
    paper:"Folha ESPECIAL. Decore, use cores — é seu troféu real!",
    rqs:["Meu método ideal de estudo é:","Tempo ideal por sessão: ___ minutos","Antes de estudar, eu devo:","Quando eu travo, meu plano é:","Uma coisa que descobri sobre mim:","Uma coisa que quero dizer pra minha mãe:"],
-   mom:["Me lê a Fórmula Ian? Quero conhecer o método que você inventou.","Estou muito orgulhosa — não pela nota, mas porque você se conheceu. Ninguém tira isso de você."],
-   tip:"Objetivo final: IDENTIDADE. Não 'burro' nem 'inteligente' — 'eu sei como funciono'. Autoestima baseada em evidência."},
+   mom:["Me lê a Fórmula Ian?","Estou orgulhosa — não pela nota, mas porque você se conheceu."],
+   tip:"Objetivo final: IDENTIDADE."},
 ];
 
-// ——— STATE ENGINE ———
-var S={tab:"home",detail:null,showMom:false,momOn:false,p:{}};
-var LS="ian-game-v3";
+// ——— CHAPTER 3: SCIENCE MISSIONS ———
+var SCIDAYS=[
+  {id:"s1",w:3,emoji:"🌍",title:"Biosfera + Atmosfera",tag:"Teoria · 26/mai",
+   color:"#00BFFF",bg:"rgba(0,191,255,.08)",sci:true,
+   mission:"Leia as páginas 4-5 da apostila sobre Biosfera e Atmosfera Terrestre. Depois FECHE O LIVRO e faça a atividade no caderno.",
+   paper:"📖 Abra a apostila nas pp. 4-5. Leia com atenção por 15 min. Depois feche e pegue o caderno!",
+   tasks:["Desenhe as 5 camadas da atmosfera (de baixo pra cima)","Anote a altitude de cada camada","Escreva 1 característica marcante de cada uma","Escreva com suas palavras: o que é biosfera?"],
+   mom:["Ian, me conta as 5 camadas da atmosfera — de baixo pra cima!","Qual é a camada mais quente? E a mais fria?"],
+   tip:"As 5 camadas da atmosfera são tema quase certo na prova. Decorar as altitudes e características é essencial."},
+  {id:"s2",w:3,emoji:"💧",title:"Hidrosfera + Camadas da Terra",tag:"Teoria · 27/mai",
+   color:"#00BFFF",bg:"rgba(0,191,255,.08)",sci:true,
+   mission:"Leia pp. 6-7 (Hidrosfera) e pp. 10-11 (Camadas internas). Feche o livro e faça as atividades.",
+   paper:"📖 Duas leituras hoje: pp. 6-7 e depois pp. 10-11. Caderno pronto!",
+   tasks:["Desenhe o gráfico de pizza da hidrosfera de memória (97% salgada, 3% doce...)","Liste os corpos de água: oceanos, mares, geleiras, rios, lagos, águas subterrâneas","Desenhe o corte da Terra com as camadas: crosta → manto sup. → manto inf. → núcleo ext. → núcleo int.","Anote composição e temperatura de cada camada"],
+   mom:["Qual a porcentagem de água doce na Terra? E onde está a maior parte?","Me desenha as camadas da Terra de cor pra fora!"],
+   tip:"O Aquífero Guarani e a composição da hidrosfera aparecem MUITO em provas de 6º ano."},
+  {id:"s3",w:3,emoji:"🪨",title:"Rochas: ígneas, sedimentares, metamórficas",tag:"Teoria · 28/mai",
+   color:"#00BFFF",bg:"rgba(0,191,255,.08)",sci:true,
+   mission:"Leia pp. 12-14 sobre os 3 tipos de rocha. Feche o livro e monte a tabela comparativa.",
+   paper:"📖 Leia pp. 12-14. Depois faça uma TABELA no caderno — caneta colorida ajuda!",
+   tasks:["Tabela: Tipo | Como se forma | Subtipos | Exemplos | Usos","Ígneas: intrusivas (granito) vs extrusivas (basalto)","Sedimentares: detríticas, químicas, orgânicas","Metamórficas: foliadas, não foliadas, transição","Desenhe o CICLO DAS ROCHAS com setas"],
+   mom:["Me explica a diferença entre rocha ígnea intrusiva e extrusiva","O que é intemperismo? Como ele participa do ciclo das rochas?"],
+   tip:"O ciclo das rochas aparece na prova! Entender como um tipo vira outro é fundamental."},
+  {id:"s4",w:3,emoji:"🦴",title:"Fósseis + Solo",tag:"Teoria · 29/mai",
+   color:"#00BFFF",bg:"rgba(0,191,255,.08)",sci:true,
+   mission:"Leia pp. 18-19 (Fósseis) e pp. 17, 20-21 (Solo). Feche o livro e faça as atividades.",
+   paper:"📖 Leia sobre fósseis E solo. Duas atividades no caderno hoje!",
+   tasks:["Desenhe as 5 etapas de formação de fósseis em quadrinhos","Explique o que é Paleontologia","Desenhe o perfil do solo: húmus → horizonte A → B → C → rocha-mãe","Liste as propriedades físicas: textura, estrutura, densidade, porosidade, permeabilidade, fluxo de calor","Escreva 1 frase explicando cada propriedade"],
+   mom:["Como um dinossauro vira fóssil? Me conta passo a passo!","Qual a diferença entre solo arenoso e argiloso?"],
+   tip:"Fósseis + perfil do solo são temas visuais. Desenhar ajuda a memorizar!"},
+  {id:"s5",w:3,emoji:"⛏️",title:"pH, Mineração e Conservação",tag:"Teoria · 30/mai",
+   color:"#00BFFF",bg:"rgba(0,191,255,.08)",sci:true,
+   mission:"Leia pp. 22-29 (último bloco teórico). Feche o livro e faça as atividades.",
+   paper:"📖 Último dia de teoria! Leia pp. 22-29. Depois caderno!",
+   tasks:["Explique: o que é pH do solo e por que importa para as plantas","Quadro dividido: 'O que DEGRADA o solo' vs 'O que CONSERVA o solo'","Liste 3 impactos ambientais da mineração","Liste 3 benefícios da reciclagem de metais","Diferença entre agrofloresta e agricultura intensiva"],
+   mom:["O que acontece se o solo fica impermeável? Por que isso causa enchente?","A mineração é boa ou ruim? Explica dos dois lados!"],
+   tip:"Mineração + conservação do solo aparece como dissertativa. Saber argumentar dos dois lados é importante."},
+  {id:"s6",w:3,emoji:"✏️",title:"Exercícios: Atmosfera + Hidrosfera",tag:"Exercícios · 2/jun",
+   color:"#14F0C0",bg:"rgba(20,240,192,.08)",sci:true,
+   mission:"Pegue o MATERIAL IMPRESSO — Dia 6. São 6 questões sobre atmosfera e hidrosfera. Responda TUDO no papel!",
+   paper:"📄 Use o Material Impresso — DIA 6. Mínimo 3-4 linhas por resposta dissertativa!",
+   tasks:["Responda as 6 questões do Dia 6 no material impresso","Lembre: mínimo 3-4 linhas por dissertativa, com dados do livro","Depois de responder, confira com o GABARITO no final do material","Anote o que errou ou ficou incompleto"],
+   mom:["Me lê uma das respostas que você escreveu — quero ouvir!","Quantas você acertou? O que faltou nas que errou?"],
+   tip:"A regra de ouro: respostas curtas demais perdem ponto. Usar dados (percentuais, nomes) mostra domínio."},
+  {id:"s7",w:3,emoji:"✏️",title:"Exercícios: Camadas + Rochas + Fósseis",tag:"Exercícios · 3/jun",
+   color:"#14F0C0",bg:"rgba(20,240,192,.08)",sci:true,
+   mission:"Material Impresso — Dia 7. São 7 questões (2 objetivas + 5 dissertativas) sobre camadas da Terra, rochas e fósseis.",
+   paper:"📄 Material Impresso — DIA 7. Tem objetivas E dissertativas hoje!",
+   tasks:["Responda as 7 questões do Dia 7","Atenção especial: ciclo das rochas e formação de fósseis","Confira com o gabarito","Reescreva as que ficaram fracas"],
+   mom:["O que é rocha ígnea extrusiva? Me explica sem olhar!","Como se forma um fóssil? Me conta as etapas."],
+   tip:"Ciclo das rochas e fossilização são os temas que mais caem nesse capítulo."},
+  {id:"s8",w:3,emoji:"✏️",title:"Exercícios: Solo + Mineração",tag:"Exercícios · 4/jun",
+   color:"#14F0C0",bg:"rgba(20,240,192,.08)",sci:true,
+   mission:"Material Impresso — Dia 8. São 7 questões sobre solo, mineração e reciclagem.",
+   paper:"📄 Material Impresso — DIA 8. Tema pesado hoje — capriche nas respostas!",
+   tasks:["Responda as 7 questões do Dia 8","Foco: impactos do Aquífero Guarani e mineração","Confira com o gabarito","Reescreva respostas incompletas"],
+   mom:["A mineração tem impactos negativos? Quais?","Por que reciclar metais é bom pro planeta?"],
+   tip:"Questões sobre mineração pedem DOIS lados: importância + impactos. Resposta que só fala um lado perde nota."},
+  {id:"s9",w:3,emoji:"✏️",title:"Exercícios: Conservação + Objetivas",tag:"Exercícios · 5/jun",
+   color:"#14F0C0",bg:"rgba(20,240,192,.08)",sci:true,
+   mission:"Material Impresso — Dia 9. Dissertativas sobre conservação + TODAS as objetivas do capítulo!",
+   paper:"📄 Material Impresso — DIA 9. Último dia de exercícios antes do simulado!",
+   tasks:["Responda dissertativas sobre impermeabilização e agrofloresta","Faça todas as 8 objetivas com atenção","Confira gabarito — anote quais temas ainda estão fracos","Releia esses temas na apostila"],
+   mom:["Das objetivas, quantas acertou?","Qual tema ainda tá difícil? Vamos focar nele."],
+   tip:"As objetivas testam detalhes. Ler a alternativa inteira antes de marcar evita pegadinhas."},
+  {id:"s10",w:3,emoji:"📋",title:"SIMULADO — Prova Real",tag:"Boss · 6/jun",
+   color:"#FFD700",bg:"rgba(255,215,0,.08)",sci:true,refl:false,
+   mission:"BOSS BATTLE! Simulado completo no Material Impresso. 10 questões, 50 minutos, SEM CONSULTA. Condições de prova real!",
+   paper:"📄 Material Impresso — SIMULADO. Timer de 50 min. Sem consultar nada!",
+   tasks:["Separe o simulado do material impresso","Coloque timer de 50 minutos no celular","Responda TUDO sem consultar apostila ou caderno","Quando acabar o tempo, pare de escrever","Corrija com o gabarito e anote CADA erro"],
+   mom:["Como foi fazer em condição de prova? Deu tempo?","Quantas acertou? Estou orgulhosa pelo esforço!"],
+   tip:"O simulado mostra exatamente o que revisar no último dia. Erros são oportunidades."},
+  {id:"s11",w:3,emoji:"🎯",title:"Revisão Final",tag:"Véspera · 9/jun",
+   color:"#00FF87",bg:"rgba(0,255,135,.08)",sci:true,
+   mission:"Último dia! Releia APENAS o que errou no simulado. Reescreva as dissertativas fracas. Complete o diagrama 'Para Não Esquecer' (p.35) de memória.",
+   paper:"📖 Apostila p. 35 + caderno. Foco total nos pontos fracos!",
+   tasks:["Releia os temas que errou no simulado","Reescreva as dissertativas que ficaram fracas","Complete o diagrama 'Para Não Esquecer' (p.35) SEM OLHAR","Durma cedo — cérebro descansado rende mais na prova!"],
+   mom:["Amanhã é o dia! Você estudou direitinho, tô orgulhosa.","Agora é descansar. Confia no que você aprendeu!"],
+   tip:"Véspera = revisão LEVE. Estudar muito na véspera causa ansiedade. Confie no processo."},
+];
+
+// Combine all missions for XP calculation
+var ALL=DAYS.concat(SCIDAYS);
+
+// ——— STATE ———
+var S={tab:"home",mtab:"sci",detail:null,showMom:false,momOn:false,p:{}};
+var LS="ian-game-v4";
 var PIN="1234";
 var taps=0,tapT=null;
 
-function load(){try{var d=localStorage.getItem(LS);if(d)S.p=JSON.parse(d)}catch(e){}}
+function load(){try{var d=localStorage.getItem(LS);if(d)S.p=JSON.parse(d);
+  // migrate from v3
+  if(!S.p._v4){var old=localStorage.getItem("ian-game-v3");
+    if(old){var op=JSON.parse(old);Object.keys(op).forEach(function(k){if(!S.p[k])S.p[k]=op[k]});
+    S.p._v4=1;save()}}
+}catch(e){}}
 function save(){try{localStorage.setItem(LS,JSON.stringify(S.p))}catch(e){}}
 
 function xp(){
   var total=0;
-  DAYS.forEach(function(d){var p=S.p[d.id];if(!p||!p.done)return;
+  ALL.forEach(function(d){var p=S.p[d.id];if(!p||!p.done)return;
     if(d.refl){total+=120}else{total+=50+(p.remember||0)*5+(p.enjoyed||0)*5}});
   return total;
 }
 function lv(x){var l=LEVELS[0];LEVELS.forEach(function(v){if(x>=v.min)l=v});return l}
 function nlv(x){for(var i=0;i<LEVELS.length;i++)if(x<LEVELS[i].min)return LEVELS[i];return null}
-function done(){return DAYS.filter(function(d){return S.p[d.id]&&S.p[d.id].done}).length}
+function done(){return ALL.filter(function(d){return S.p[d.id]&&S.p[d.id].done}).length}
+function sciDone(){return SCIDAYS.filter(function(d){return S.p[d.id]&&S.p[d.id].done}).length}
 
 function secretTap(){
   taps++;clearTimeout(tapT);
@@ -354,13 +415,12 @@ function secretTap(){
   if(el){el.style.transform="scale(1.15)";setTimeout(function(){el.style.transform="scale(1)"},150)}
   tapT=setTimeout(function(){taps=0},2000);
   if(taps>=5){taps=0;setTimeout(function(){
-    var pin=prompt("🔒 Código de acesso:");
+    var pin=prompt("🔒 Código:");
     if(pin===PIN){S.momOn=true;S.tab="mom";render()}
     else if(pin!==null)alert("Código incorreto")
   },200)}
 }
 
-// ——— NAV ———
 function updateNav(){
   var nav=document.getElementById("main-nav");if(!nav)return;
   nav.style.display=S.detail?"none":"flex";
@@ -371,7 +431,6 @@ function updateNav(){
   })
 }
 
-// ——— RENDER ENGINE ———
 function render(){
   var app=document.getElementById("app");
   if(S.detail){app.innerHTML=rDetail();updateNav();return}
@@ -384,17 +443,16 @@ function render(){
 
 // ——— HOME ———
 function rHome(){
-  var x=xp(),l=lv(x),n=nlv(x),d=done(),t=DAYS.length;
+  var x=xp(),l=lv(x),n=nlv(x),d=done(),t=ALL.length;
   var pct=n?Math.min(100,((x-l.min)/(n.min-l.min))*100):100;
-  var next=DAYS.filter(function(d){return!S.p[d.id]||!S.p[d.id].done})[0];
-  var w2lock=!S.p.d6||!S.p.d6.done;
+  var sd=sciDone(),st=SCIDAYS.length;
 
   var h='<div style="text-align:center;padding:20px 0 8px">';
   h+='<div id="bolt" style="font-size:44px;cursor:default;user-select:none;transition:transform .15s" onclick="secretTap()">⚡</div>';
   h+='<h1 class="gf" style="font-size:18px;letter-spacing:2px;margin-top:4px;background:linear-gradient(90deg,var(--neon),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent">PROJETO IAN</h1>';
   h+='<p style="font-size:10px;color:var(--text3);margin-top:2px;letter-spacing:1px">A JORNADA DO ESTUDANTE</p></div>';
 
-  // XP card
+  // XP
   h+='<div class="glass" style="padding:20px;margin-bottom:12px">';
   h+='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">';
   h+='<div style="display:flex;align-items:center;gap:8px"><span style="font-size:20px">'+l.icon+'</span>';
@@ -410,47 +468,119 @@ function rHome(){
   h+='<div class="glass stat-card"><div class="stat-num" style="color:var(--gold)">'+ACHS.filter(function(a){return a.ck(S.p)}).length+'</div><div class="stat-label">Troféus</div></div>';
   h+='<div class="glass stat-card"><div class="stat-num" style="color:var(--blue)">'+Math.round(d/t*100)+'%</div><div class="stat-label">Progresso</div></div></div>';
 
-  // Next mission
-  if(next){
-    var locked=next.w===2&&w2lock;
-    h+='<div class="glass" style="padding:18px">';
-    h+='<div class="gf" style="font-size:9px;color:var(--neon);letter-spacing:1.5px;margin-bottom:10px">PRÓXIMA MISSÃO</div>';
+  // Science progress card
+  h+='<div class="glass" style="padding:16px;margin-bottom:12px;border-color:rgba(0,191,255,.2)">';
+  h+='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">';
+  h+='<div class="gf" style="font-size:10px;color:var(--sci);letter-spacing:1.2px">🔬 RECUPERAÇÃO CIÊNCIAS</div>';
+  h+='<div style="font-size:11px;color:var(--text2);font-weight:700">'+sd+'/'+st+'</div></div>';
+  h+='<div class="xp-track"><div class="xp-fill" style="width:'+Math.round(sd/st*100)+'%;background:linear-gradient(90deg,var(--sci),var(--teal))"></div></div>';
+  h+='<div style="font-size:9px;color:var(--text3);margin-top:6px">Prova: 10 de junho</div></div>';
+
+  // Next science mission
+  var nextSci=SCIDAYS.filter(function(d){return!S.p[d.id]||!S.p[d.id].done})[0];
+  if(nextSci){
+    h+='<div class="glass" style="padding:18px;border-color:rgba(0,191,255,.15)">';
+    h+='<div class="gf" style="font-size:9px;color:var(--sci);letter-spacing:1.5px;margin-bottom:10px">PRÓXIMA MISSÃO — CIÊNCIAS</div>';
     h+='<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">';
-    h+='<div style="width:48px;height:48px;border-radius:14px;background:'+next.bg+';display:flex;align-items:center;justify-content:center;font-size:26px">'+next.emoji+'</div>';
-    h+='<div><div style="font-size:14px;font-weight:700">'+next.title+'</div>';
-    h+='<div style="font-size:10px;color:'+next.color+';font-weight:600">'+next.tag+'</div></div></div>';
-    if(locked){h+='<div style="padding:10px;background:rgba(255,140,0,.08);border-radius:10px;font-size:11px;color:var(--orange);text-align:center">🔒 Complete a Semana 1 para desbloquear</div>'}
-    else{h+='<button class="btn-main btn-green" onclick="openDay(\''+next.id+'\')">⚡ INICIAR MISSÃO</button>'}
-    h+='</div>'
-  } else {
-    h+='<div class="glass" style="padding:24px;text-align:center;border-color:rgba(0,255,135,.2)">';
-    h+='<div style="font-size:40px;margin-bottom:8px">🎉</div>';
-    h+='<div class="gf" style="font-size:14px;color:var(--neon);letter-spacing:1px">JORNADA COMPLETA!</div>';
-    h+='<p style="font-size:12px;color:var(--text2);margin-top:6px">A Fórmula Ian é seu troféu permanente.</p></div>'
+    h+='<div style="width:48px;height:48px;border-radius:14px;background:'+nextSci.bg+';display:flex;align-items:center;justify-content:center;font-size:26px">'+nextSci.emoji+'</div>';
+    h+='<div><div style="font-size:14px;font-weight:700">'+nextSci.title+'</div>';
+    h+='<div style="font-size:10px;color:'+nextSci.color+';font-weight:600">'+nextSci.tag+'</div></div></div>';
+    h+='<button class="btn-main btn-green" onclick="openDay(\''+nextSci.id+'\')">🔬 INICIAR MISSÃO</button></div>'
+  } else if(sd===st){
+    h+='<div class="glass" style="padding:20px;text-align:center;border-color:rgba(0,191,255,.25)">';
+    h+='<div style="font-size:36px;margin-bottom:6px">🎉</div>';
+    h+='<div class="gf" style="font-size:13px;color:var(--sci);letter-spacing:1px">CIÊNCIAS COMPLETO!</div>';
+    h+='<p style="font-size:11px;color:var(--text2);margin-top:4px">Agora é só arrasar na prova! 💪</p></div>'
   }
   return h
 }
 
 // ——— MISSIONS LIST ———
 function rMissions(){
+  var sd=sciDone(),st=SCIDAYS.length;
+  var od=DAYS.filter(function(d){return S.p[d.id]&&S.p[d.id].done}).length;
+  var h='';
+
+  // Sub-tabs
+  h+='<div class="mtabs">';
+  h+='<button class="mtab'+(S.mtab==="sci"?" act":"")+'" onclick="S.mtab=\'sci\';render()">';
+  h+='🔬 Ciências<span class="mtab-badge" style="background:rgba(0,191,255,.15);color:var(--sci)">'+sd+'/'+st+'</span></button>';
+  h+='<button class="mtab'+(S.mtab==="met"?" act":"")+'" onclick="S.mtab=\'met\';render()">';
+  h+='⚔️ Jornada<span class="mtab-badge" style="background:rgba(0,255,135,.1);color:var(--neon)">'+od+'/'+DAYS.length+'</span></button>';
+  h+='</div>';
+
+  if(S.mtab==="sci"){
+    h+=rMissionsSci()
+  } else {
+    h+=rMissionsMet()
+  }
+  return h
+}
+
+function rMissionsSci(){
+  var sd=sciDone(),st=SCIDAYS.length;
+  var h='';
+
+  // Header
+  h+='<div style="text-align:center;padding:4px 0 14px">';
+  h+='<div style="font-size:18px;font-weight:800">Recuperação Ciências</div>';
+  h+='<div style="font-size:11px;color:var(--text3);margin-top:3px">Prova 10/jun · Cap. 1: A estrutura do nosso planeta</div>';
+  // Progress
+  h+='<div style="max-width:280px;margin:10px auto 0">';
+  h+='<div class="xp-track"><div class="xp-fill" style="width:'+Math.round(sd/st*100)+'%;background:linear-gradient(90deg,var(--sci),var(--teal))"></div></div>';
+  h+='</div></div>';
+
+  var sciTeoria=SCIDAYS.filter(function(d){return d.tag.indexOf("Teoria")>=0});
+  var sciExerc=SCIDAYS.filter(function(d){return d.tag.indexOf("Exerc")>=0||d.tag.indexOf("Boss")>=0||d.tag.indexOf("Véspera")>=0});
+
+  h+='<div style="font-size:10px;font-weight:700;color:var(--sci);letter-spacing:.8px;margin:4px 0 8px;text-transform:uppercase">📖 Semana 1 — Teoria (26-30/mai)</div>';
+  sciTeoria.forEach(function(d,i){h+=rSciCard(d,i,sciTeoria)});
+
+  h+='<div style="font-size:10px;font-weight:700;color:var(--teal);letter-spacing:.8px;margin:14px 0 8px;text-transform:uppercase">✏️ Semana 2 — Exercícios + Simulado (2-9/jun)</div>';
+  sciExerc.forEach(function(d,i){h+=rSciCard(d,i,sciExerc)});
+
+  return h
+}
+
+function rMissionsMet(){
   var w2lock=!S.p.d6||!S.p.d6.done;
-  var h='<div style="text-align:center;padding:12px 0 14px">';
-  h+='<div class="gf" style="font-size:14px;color:var(--blue);letter-spacing:1.5px">CAPÍTULO 1</div>';
+  var h='';
+
+  // Chapter 1
+  h+='<div style="text-align:center;padding:4px 0 14px">';
+  h+='<div class="gf" style="font-size:12px;color:var(--blue);letter-spacing:1.5px">CAPÍTULO 1</div>';
   h+='<div style="font-size:18px;font-weight:800;margin-top:2px">Descoberta</div>';
   h+='<div style="font-size:10px;color:var(--text3);margin-top:2px">Descubra como você aprende melhor</div></div>';
-
   var w1=DAYS.filter(function(d){return d.w===1});
   var w2=DAYS.filter(function(d){return d.w===2});
   w1.forEach(function(d,i){h+=rDayCard(d,i,w1,false)});
 
+  // Chapter 2
   h+='<div style="text-align:center;padding:18px 0 14px">';
-  h+='<div class="gf" style="font-size:14px;color:var(--purple);letter-spacing:1.5px">CAPÍTULO 2</div>';
+  h+='<div class="gf" style="font-size:12px;color:var(--purple);letter-spacing:1.5px">CAPÍTULO 2</div>';
   h+='<div style="font-size:18px;font-weight:800;margin-top:2px">Autonomia</div>';
   h+='<div style="font-size:10px;color:var(--text3);margin-top:2px">Assuma o controle dos seus estudos</div></div>';
-
   if(w2lock)h+='<div class="glass" style="padding:12px;text-align:center;font-size:11px;color:var(--orange);margin-bottom:10px">🔒 Complete o Boss da Semana 1 para desbloquear</div>';
   w2.forEach(function(d,i){h+=rDayCard(d,i,w2,w2lock)});
+
   return h
+}
+
+function rSciCard(d,i,list){
+  var p=S.p[d.id]||{};
+  var prev=i===0||S.p[list[i-1].id]&&S.p[list[i-1].id].done;
+  var locked=i>0&&!prev&&!p.done;
+  var earned=p.done?50+(p.remember||0)*5+(p.enjoyed||0)*5:0;
+  var isBoss=d.tag.indexOf("Boss")>=0;
+
+  var cls="glass dc sci-accent"+(p.done?" done":"")+(locked?" lk":"");
+  var h='<div class="'+cls+'" onclick="'+(locked?"":"openDay('"+d.id+"')")+'"'+(isBoss?' style="border-color:rgba(255,215,0,.15)"':'')+'>';
+  h+='<div class="dc-icon" style="background:'+d.bg+'">'+(!locked?(p.done?"✅":d.emoji):"🔒")+'</div>';
+  h+='<div class="dc-info"><div class="dc-title">'+d.title+'</div>';
+  h+='<div class="dc-tag" style="color:'+d.color+'">'+d.tag+'</div></div>';
+  if(p.done)h+='<div class="dc-xp"><div class="gf" style="font-size:14px;color:var(--sci)">+'+earned+'</div><div style="font-size:8px;color:var(--text3);font-weight:700">XP</div></div>';
+  else if(!locked)h+='<div style="color:var(--text3);font-size:16px">›</div>';
+  h+='</div>';return h
 }
 
 function rDayCard(d,i,list,wLock){
@@ -459,7 +589,6 @@ function rDayCard(d,i,list,wLock){
   var locked=wLock||(i>0&&!prev&&!p.done);
   var earned=p.done?(d.refl?120:50+(p.remember||0)*5+(p.enjoyed||0)*5):0;
   var isBoss=d.tag&&d.tag.indexOf("Boss")>=0;
-
   var cls="glass dc"+(p.done?" done":"")+(locked?" lk":"");
   var h='<div class="'+cls+'" onclick="'+(locked?"":"openDay('"+d.id+"')")+'"'+(isBoss?' style="border-color:rgba(255,215,0,.15)"':'')+'>';
   h+='<div class="dc-icon" style="background:'+d.bg+'">'+(!locked?(p.done?"✅":d.emoji):"🔒")+'</div>';
@@ -472,17 +601,21 @@ function rDayCard(d,i,list,wLock){
 
 // ——— DETAIL ———
 function rDetail(){
-  var d=null;DAYS.forEach(function(v){if(v.id===S.detail)d=v});
+  var d=null;
+  ALL.forEach(function(v){if(v.id===S.detail)d=v});
   if(!d)return"";var p=S.p[d.id]||{};
   var isBoss=d.tag&&d.tag.indexOf("Boss")>=0;
-  var lvNum=DAYS.indexOf(d)+1;
+  var isSci=d.sci||false;
+  var lvNum=isSci?SCIDAYS.indexOf(d)+1:DAYS.indexOf(d)+1;
+  var lvTotal=isSci?SCIDAYS.length:DAYS.length;
+  var chName=isSci?"CIÊNCIAS":(d.w===1?"DESCOBERTA":"AUTONOMIA");
 
-  if(S.showMom){
+  if(S.showMom&&d.mom){
     var h='<div class="ov open" style="display:block;position:relative">';
-    h+='<button class="back" onclick="S.showMom=false;render()">← Voltar</button>';
+    h+='<button class="back" onclick="S.showMom=false;render()">‹ VOLTAR</button>';
     h+='<div style="text-align:center;margin-bottom:16px"><div style="font-size:36px">📱</div>';
     h+='<div style="font-size:16px;font-weight:800;margin-top:4px">Roteiro da Ligação</div>';
-    h+='<div style="font-size:11px;color:var(--text3)">Frases-guia — Nível '+lvNum+'</div></div>';
+    h+='<div style="font-size:11px;color:var(--text3)">'+d.title+'</div></div>';
     h+='<div class="glass" style="padding:18px;margin-bottom:12px">';
     d.mom.forEach(function(m){
       h+='<div class="mom-bubble"><div class="mom-who">Você diz:</div><p>"'+m+'"</p></div>'
@@ -490,28 +623,35 @@ function rDetail(){
     h+='</div>';
     if(d.tip){h+='<div class="glass" style="padding:14px;display:flex;gap:10px"><span style="font-size:15px">💡</span>';
       h+='<p style="font-size:11px;color:var(--blue);line-height:1.6">'+d.tip+'</p></div>'}
-    h+='<div class="glass" style="padding:14px;margin-top:10px;display:flex;gap:10px"><span style="font-size:15px">💛</span>';
-    h+='<div><p style="font-size:11px;color:var(--gold);font-weight:700;margin-bottom:3px">Lembre-se:</p>';
-    h+='<p style="font-size:11px;color:var(--text2);line-height:1.6">Ligação curta (10-15 min), tom leve. Se não fez, tudo bem — pergunte sobre o dia.</p></div></div>';
     h+='</div>';return h
   }
 
   var h='<div class="ov open" style="display:block;position:relative">';
-  h+='<button class="back" onclick="closeDay()">← Voltar</button>';
+  h+='<button class="back" onclick="closeDay()">‹ VOLTAR</button>';
 
   // Header
-  h+='<div class="mh glass" style="border-left:3px solid '+d.color+'">';
+  var borderC=isSci?"var(--sci)":d.color;
+  h+='<div class="mh glass" style="border-left:3px solid '+borderC+'">';
   h+='<div style="font-size:36px;margin-bottom:4px">'+d.emoji+'</div>';
-  h+='<div class="tag" style="color:'+d.color+'">'+d.tag+'</div>';
+  h+='<div class="tag" style="color:'+borderC+'">'+d.tag+'</div>';
   h+='<h2>'+d.title+'</h2>';
-  h+='<div class="lvl">NÍVEL '+lvNum+' DE 12'+(isBoss?' — ⚠️ BOSS BATTLE':'')+'</div></div>';
+  h+='<div class="lvl">'+chName+' — NÍVEL '+lvNum+' DE '+lvTotal+(isBoss?' — ⚠️ BOSS':'')+'</div></div>';
 
-  // Paper alert
+  // Paper
   h+='<div class="pa"><span style="font-size:18px">✏️</span><p>'+d.paper+'</p></div>';
 
   // Mission briefing
-  h+='<div class="sec glass"><div class="sec-label" style="color:'+d.color+'">🎯 BRIEFING DA MISSÃO</div>';
+  h+='<div class="sec glass"><div class="sec-label" style="color:'+borderC+'">🎯 BRIEFING DA MISSÃO</div>';
   h+='<p style="font-size:13px;color:var(--text2);line-height:1.75">'+d.mission+'</p></div>';
+
+  // Science tasks checklist
+  if(d.tasks){
+    h+='<div class="sec glass"><div class="sec-label" style="color:var(--sci)">📋 CHECKLIST</div>';
+    d.tasks.forEach(function(t,i){
+      h+='<div class="ck-item"><b>'+(i+1)+'.</b> '+t+'</div>'
+    });
+    h+='</div>'
+  }
 
   // Reflection questions
   if(d.refl&&d.rqs){
@@ -520,33 +660,32 @@ function rDetail(){
     h+='</div>'
   }
 
-  // Mom button (hidden unless unlocked)
-  if(S.momOn){
+  // Mom button
+  if(S.momOn&&d.mom){
     h+='<button onclick="S.showMom=true;render()" style="width:100%;background:rgba(0,255,135,.06);border:1px solid rgba(0,255,135,.12);border-radius:12px;padding:14px;text-align:left;margin-bottom:10px">';
-    h+='<div style="font-size:9px;font-weight:700;color:var(--neon);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px">📱 DEBRIEF — ROTEIRO MÃE</div>';
+    h+='<div style="font-size:9px;font-weight:700;color:var(--neon);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px">📱 ROTEIRO MÃE</div>';
     h+='<div style="font-size:11px;color:var(--text2)">Frases-guia para a ligação</div></button>'
   }
 
-  // Rating (0-10 scale)
+  // Rating
   if(!d.refl){
     h+='<div class="sec glass"><div class="sec-label" style="color:var(--gold)">⭐ AVALIAÇÃO PÓS-MISSÃO</div>';
     h+='<div class="rate-row"><div class="rate-label">Quanto lembrei? (0 = nada · 10 = tudo)</div><div class="rate-track">';
     for(var i=0;i<=10;i++){
-      var on=(p.remember!==undefined&&p.remember!==null&&p.remember>=i)?true:false;
+      var on=p.remember!==undefined&&p.remember!==null&&p.remember>=i;
       var gc=on?"background:linear-gradient(135deg,var(--neon),var(--teal))":"";
       h+='<button class="'+(on?"on":"off")+'" style="'+gc+'" onclick="rate(\''+d.id+'\',\'remember\','+i+')">'+i+'</button>'
     }
     h+='</div></div>';
     h+='<div class="rate-row"><div class="rate-label">Quanto gostei? (0 = nada · 10 = amei)</div><div class="rate-track">';
     for(var i=0;i<=10;i++){
-      var on=(p.enjoyed!==undefined&&p.enjoyed!==null&&p.enjoyed>=i)?true:false;
+      var on=p.enjoyed!==undefined&&p.enjoyed!==null&&p.enjoyed>=i;
       var gc=on?"background:linear-gradient(135deg,var(--gold),var(--orange))":"";
       h+='<button class="'+(on?"on":"off")+'" style="'+gc+'" onclick="rate(\''+d.id+'\',\'enjoyed\','+i+')">'+i+'</button>'
     }
     h+='</div></div></div>'
   }
 
-  // Complete button
   h+='<button class="btn-main '+(p.done?"btn-done":"btn-green")+'" onclick="toggleDone(\''+d.id+'\')">';
   h+=(p.done?"✅ MISSÃO COMPLETA":"⚡ MISSÃO CUMPRIDA")+'</button>';
   h+='</div>';return h
@@ -575,27 +714,25 @@ function rMom(){
   var h='<button onclick="lockMom()" style="width:100%;padding:10px;border-radius:10px;background:var(--surface2);color:var(--text2);font-size:12px;font-weight:700;margin-bottom:14px;border:1px solid var(--border)">🔒 Sair do Modo Mãe</button>';
   h+='<div style="text-align:center;margin-bottom:16px"><div style="font-size:36px">💛</div>';
   h+='<div class="gf" style="font-size:14px;margin-top:4px;letter-spacing:1px;color:var(--gold)">GUIA DA MÃE</div></div>';
-
   var rules=[
-    {t:"Regra 1: Valide antes de redirecionar",b:'Se ele disser "eu sou burro", não diga "não é não". Diga: <em style="color:var(--neon)">"Eu entendo que você tá sentindo isso. Vamos ver juntos?"</em>'},
-    {t:"Regra 2: Elogie o processo",b:'Em vez de "você é inteligente": <em style="color:var(--neon)">"Gostei que tentou de um jeito diferente"</em> ou <em style="color:var(--neon)">"Dá pra ver o esforço"</em>'},
-    {t:"Regra 3: Normalize a dificuldade",b:"Conte momentos em que VOCÊ precisou de mais tempo que outras pessoas — e como isso não te definiu."},
-    {t:"Sobre a ligação",b:"10-15 min, tom leve e curioso. Não é cobrança. Se não fez, pergunte sobre o dia e tenta amanhã."},
-    {t:"Sobre quem estuda com ele",b:"Compartilhe este app com a pessoa que estuda com o Ian. Se reforçar a mesma linguagem de processo, o efeito multiplica."},
+    {t:"Regra 1: Valide antes de redirecionar",b:'Se ele disser "eu sou burro", diga: <em style="color:var(--neon)">"Eu entendo que você tá sentindo isso. Vamos ver juntos?"</em>'},
+    {t:"Regra 2: Elogie o processo",b:'Em vez de "você é inteligente": <em style="color:var(--neon)">"Gostei que tentou de um jeito diferente"</em>'},
+    {t:"Regra 3: Normalize a dificuldade",b:"Conte momentos em que VOCÊ precisou de mais tempo que outras pessoas."},
+    {t:"Sobre a ligação",b:"10-15 min, tom leve. Não é cobrança. Se não fez, pergunte sobre o dia."},
+    {t:"Ciências: Material Impresso",b:"A partir do dia 2/jun, o Ian usa o material impresso para os exercícios. O gabarito com modelos de resposta está no final — confira junto com ele!"},
   ];
   rules.forEach(function(r){
     h+='<div class="glass" style="padding:18px;margin-bottom:8px"><h3 style="font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px">'+r.t+'</h3>';
     h+='<p style="font-size:12px;color:var(--text2);line-height:1.7">'+r.b+'</p></div>'
   });
-
   h+='<div class="glass" style="padding:18px;margin-bottom:8px;border-color:rgba(255,77,106,.2)"><h3 style="font-size:14px;font-weight:700;color:var(--red);margin-bottom:8px">🔄 Resetar progresso</h3>';
-  h+='<p style="font-size:12px;color:var(--text2);margin-bottom:10px">Apaga todo o progresso do Ian.</p>';
+  h+='<p style="font-size:12px;color:var(--text2);margin-bottom:10px">Apaga todo o progresso.</p>';
   h+='<button onclick="if(confirm(\'Tem certeza? Apaga tudo.\')){S.p={};save();render()}" style="padding:8px 16px;border-radius:8px;background:rgba(255,77,106,.1);color:var(--red);font-size:12px;font-weight:700;border:1px solid rgba(255,77,106,.2)">Resetar</button></div>';
   return h
 }
 
 // ——— ACTIONS ———
-function go(t){S.tab=t;render();window.scrollTo(0,0)}
+function go(t){S.tab=t;if(t==="missions")S.mtab="sci";render();window.scrollTo(0,0)}
 function lockMom(){S.momOn=false;S.tab="home";render();window.scrollTo(0,0)}
 function openDay(id){S.detail=id;S.showMom=false;render();window.scrollTo(0,0)}
 function closeDay(){S.detail=null;S.showMom=false;render()}
